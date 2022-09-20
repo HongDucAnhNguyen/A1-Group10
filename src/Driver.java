@@ -17,8 +17,9 @@ public class Driver {
 
         //Load the file and check that it exists
         File file = new File("./res/polyfor1.txt");
-        //File file = new File("../res/polyfor3.txt");
-        //File file = new File("../res/polyfor5.txt");
+        //File file = new File("./res/polyfor3.txt");
+        //File file = new File("./res/polyfor5.txt");
+        //File file = new File("./res/polyNameBIG.txt");
 
         if (!file.exists()) {
             System.out.println("Specified file does not exist.");
@@ -38,6 +39,8 @@ public class Driver {
         Shape[] shapes = new Shape[arraySize];
 
         int i = 0;
+
+        long startTime = System.currentTimeMillis();
 
         //Loop through the file
         while (scanner.hasNext()) {
@@ -88,7 +91,8 @@ public class Driver {
             i++;
         }
 
-        System.out.println("Loaded " + i + " shapes.");
+        System.out.println("Loaded " + shapes.length + " shapes.");
+        System.out.println("Time taken: " + (System.currentTimeMillis() - startTime) + "ms");
 
     }
 
