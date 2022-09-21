@@ -18,6 +18,7 @@ public class Manager {
     public void readFile() throws FileNotFoundException {
 
         Scanner scan = new Scanner(new File("res/polyfor1.txt"));
+
         scan.useDelimiter(" ");
         int shapeSize = scan.nextInt();
         String shapeType;

@@ -2,9 +2,8 @@ package shapes;
 
 public class Cylinder extends GeneralShape{
     private double radius;
-    @Override
     public double calcVolume() {
-        return 0;
+        return PI * Math.pow(getRadius(), 2) * getHeight();
     }
 
     public Cylinder(double height, double radius) {
@@ -22,11 +21,11 @@ public class Cylinder extends GeneralShape{
 
     @Override
     public double calcBaseArea() {
-        return 0;
+        return PI * Math.pow(radius, 2);
     }
 
     @Override
     public int compareTo(GeneralShape o) {
-        return 0;
+        return getHeight() > o.getHeight() ? 1 : -1;
     }
 }

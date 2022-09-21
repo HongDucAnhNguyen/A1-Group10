@@ -2,24 +2,22 @@ package shapes;
 
 public class Cone extends GeneralShape{
 private double radius;
-    @Override
-    public double calcVolume() {
-        return 0;
-    }
-
     public Cone(double height, double radius) {
         super(height);
         this.radius = radius;
     }
+    public double calcVolume() {
+        return (1/3) * PI * Math.pow(getRadius(), 2) * getHeight();
+    }
 
     @Override
     public double calcBaseArea() {
-        return 0;
+        return PI * Math.pow(radius, 2);
     }
 
     @Override
     public int compareTo(GeneralShape o) {
-        return 0;
+        return getHeight() > o.getHeight() ? 1 : -1;
     }
 
     public double getRadius() {
