@@ -8,14 +8,19 @@ import shapes.prisms.OctagonalPrism;
 import shapes.prisms.PentagonalPrism;
 import shapes.prisms.SquarePrism;
 import shapes.prisms.TriangularPrism;
+import utils.Sorter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Manager {
-    public void readFile() throws FileNotFoundException {
+
+    public void manage() throws FileNotFoundException {
+
 
         Scanner scan = new Scanner(new File("res/polyfor1.txt"));
 
@@ -61,11 +66,27 @@ public class Manager {
                 default:
                     break;
             }
-            System.out.println(shapes[arrayIndex].getHeight());
+
+
             arrayIndex++;
-
         }
-
+        MenuManager(shapes);
     }
 
+
+    private void MenuManager(GeneralShape[] shapes) {
+        Scanner inputScan = new Scanner(System.in);
+        String command = "";
+        while(!command.equals("-q")){
+            System.out.println("Welcome to sorter app, choose sort type:");
+            System.out.println("-hS or -q");
+            System.out.print("ENTER COMMAND: ");
+            command = inputScan.nextLine().toLowerCase();
+            if(command.equals("-hs")){
+                new Sorter().BubbleSort(shapes);
+
+            }
+            System.out.println();
+        }
+    }
 }

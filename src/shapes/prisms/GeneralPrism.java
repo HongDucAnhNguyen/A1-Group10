@@ -10,12 +10,12 @@ public abstract class GeneralPrism extends GeneralShape {
     }
 
     public GeneralPrism(double height, double side) {
-        super(height);
+        this.height = height;
         this.side = side;
     }
 
     @Override
     public int compareTo(GeneralShape o) {
-        return getHeight() > o.getHeight() ? 1 : -1;
+        return (int) (this.getHeight() - o.getHeight());
     }
 }

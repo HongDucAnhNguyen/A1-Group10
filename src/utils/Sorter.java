@@ -1,26 +1,45 @@
 package utils;
 
+import shapes.GeneralShape;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Sorter {
-    public static void quickSort() {
+    public  void quickSort() {
 
     }
 
-    public static void BubbleSort() {
+    public void BubbleSort(GeneralShape[] shapes){
+        List<GeneralShape> shapeList = new ArrayList<>();
+        System.out.println("general demo sort initiated");
+        //only for testing, this is not meant to be used in assignment
+        for (GeneralShape shape: shapes
+        ) {
+            shapeList.add(shape);
+        }
+        Collections.sort(shapeList, Collections.reverseOrder());
+        System.out.println("\nSort result: ");
+        for (GeneralShape shape: shapeList
+        ) {
+            System.out.println(shape.getHeight());
+        }
 
     }
 
-    public static void SelectionSort() {
+    public  void SelectionSort() {
 
     }
 
-    public static void InsertionSort() {
+    public  void InsertionSort() {
 
     }
 
-    public static void mergeSort() {
+    public  void mergeSort() {
     }
 
-    public static void SixthSort() {
+    public  void SixthSort() {
 
     }
 }

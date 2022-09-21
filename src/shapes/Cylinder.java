@@ -7,7 +7,7 @@ public class Cylinder extends GeneralShape{
     }
 
     public Cylinder(double height, double radius) {
-        super(height);
+        this.height = height;
         this.radius = radius;
     }
 
@@ -24,8 +24,4 @@ public class Cylinder extends GeneralShape{
         return PI * Math.pow(radius, 2);
     }
 
-    @Override
-    public int compareTo(GeneralShape o) {
-        return getHeight() > o.getHeight() ? 1 : -1;
-    }
 }

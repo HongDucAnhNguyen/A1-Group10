@@ -12,12 +12,9 @@ public class Pyramid extends GeneralShape{
         return Math.pow(side, 2);
     }
 
-    @Override
-    public int compareTo(GeneralShape o) {
-        return getHeight() > o.getHeight() ? 1 : -1;
-    }
+
     public Pyramid(double height, double side) {
-        super(height);
+        this.height = height;
         this.side = side;
     }
 
