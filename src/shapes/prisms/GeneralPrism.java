@@ -16,6 +16,13 @@ public abstract class GeneralPrism extends GeneralShape {
 
     @Override
     public int compareTo(GeneralShape o) {
-        return (int) (this.getHeight() - o.getHeight());
+        if(this.getHeight() > o.getHeight()){
+            return 1;
+        } else if (this.getHeight() < o.getHeight()) {
+            return -1;
+        }
+        else{
+            return 0;
+        }
     }
 }
