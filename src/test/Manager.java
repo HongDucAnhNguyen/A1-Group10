@@ -21,7 +21,7 @@ public class Manager {
 
     public void manage() throws FileNotFoundException {
 
-        ArrayList<GeneralShape> shapeList = new ArrayList<>();
+
         Scanner scan = new Scanner(new File("res/polyfor1.txt"));
 
         scan.useDelimiter(" ");
@@ -67,7 +67,7 @@ public class Manager {
                     break;
             }
 
-            shapeList.add(shapes[arrayIndex]);
+
             arrayIndex++;
         }
         MenuManager(shapes);
