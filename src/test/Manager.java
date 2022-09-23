@@ -21,7 +21,7 @@ public class Manager {
 
     public void manage() throws FileNotFoundException {
 
-
+        ArrayList<GeneralShape> shapeList = new ArrayList<>();
         Scanner scan = new Scanner(new File("res/polyfor1.txt"));
 
         scan.useDelimiter(" ");
@@ -67,7 +67,7 @@ public class Manager {
                     break;
             }
 
-
+            shapeList.add(shapes[arrayIndex]);
             arrayIndex++;
         }
         MenuManager(shapes);
@@ -77,12 +77,22 @@ public class Manager {
     private void MenuManager(GeneralShape[] shapes) {
         Scanner inputScan = new Scanner(System.in);
         String command = "";
-        while(!command.equals("-q")){
-            System.out.println("Welcome to sorter app, choose sort type:");
-            System.out.println("-hS or -q");
+        while (!command.equals("-q")) {
+            System.out.println("Welcome to sorter app, please follow instructions");
+            System.out.println("-f<filename>");
+            System.out.println("-t<specify type>");
+            System.out.println("-s<specify sorting algorithm>");
+            System.out.println();
+            System.out.println("Types:");
+            System.out.println("h for height; v for volume; a for base area ");
+            System.out.println();
+            System.out.println("Sorting types:");
+            System.out.println(" b for Bubble; s for Selection, i is Insertion, " +
+                    "m for Merge, q for Quick, z for sort of choice");
+            System.out.println();
             System.out.print("ENTER COMMAND: ");
             command = inputScan.nextLine().toLowerCase();
-            if(command.equals("-hs")){
+            if (command.equals("-hs")) {
                 new Sorter().BubbleSort(shapes);
 
             }
