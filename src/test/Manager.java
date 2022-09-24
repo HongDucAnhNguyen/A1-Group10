@@ -9,6 +9,7 @@ import shapes.prisms.PentagonalPrism;
 import shapes.prisms.SquarePrism;
 import shapes.prisms.TriangularPrism;
 import utils.Sorter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -88,45 +89,51 @@ public class Manager {
             System.out.println();
             System.out.print("ENTER COMMAND: ");
             command = inputScan.nextLine().toLowerCase();
-            if (command.equals("-hb")) {
-                new Sorter().BubbleSort(shapes);
-                for (GeneralShape shape : shapes
-                ) {
-                    System.out.println(shape.getHeight());
-                }
+            if (command.substring(2).equals("b")) {
+                new Sorter().BubbleSort(shapes, command);
+
 
             }
-            if (command.equals("-hq")) {
-                new Sorter().quickSort(shapes, 0, shapes.length - 1);
-                for (GeneralShape shape : shapes
-                ) {
-                    System.out.println(shape.getHeight());
-                }
+            if (command.substring(2).equals("q")) {
+
+                new Sorter().quickSort(shapes, 0, shapes.length - 1, command);
 
             }
-            if (command.equals("-hs")) {
-                new Sorter().SelectionSort(shapes);
-                for (GeneralShape shape : shapes
-                ) {
-                    System.out.println(shape.getHeight());
-                }
+
+
+            if (command.substring(2).equals("s")) {
+
+
+                new Sorter().SelectionSort(shapes,command);
 
             }
-            if (command.equals("-hi")) {
-                new Sorter().InsertionSort(shapes);
-                for (GeneralShape shape : shapes
-                ) {
-                    System.out.println(shape.getHeight());
-                }
+
+
+
+            if (command.substring(2).equals("i")) {
+
+
+                new Sorter().InsertionSort(shapes, command);
 
             }
-            if (command.equals("-hm")) {
-                new Sorter().mergeSort(shapes);
-                for (GeneralShape shape : shapes
-                ) {
-                    System.out.println(shape.getHeight());
-                }
 
+
+
+            if (command.substring(2).equals("m")) {
+
+
+                new Sorter().mergeSort(shapes, command);
+
+            }
+
+
+
+
+            System.out.println("\nSort results: ");
+            for (GeneralShape shape : shapes
+            ) {
+                System.out.println(shape.getHeight() + "\t" + shape.calcBaseArea()
+                        + "\t" + shape.calcVolume());
             }
             System.out.println();
         }

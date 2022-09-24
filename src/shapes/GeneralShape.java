@@ -3,12 +3,14 @@ package shapes;
 public abstract class GeneralShape implements Comparable<GeneralShape> {
 
     //declare height variable
-    protected  double height;
+    protected double height;
 
-    protected  final double PI = 3.14;
+
+    protected final double PI = 3.14;
 
     //default constructor
     public GeneralShape() {
+
     }
 
     //custom constructor
@@ -30,12 +32,11 @@ public abstract class GeneralShape implements Comparable<GeneralShape> {
 
     @Override
     public int compareTo(GeneralShape o) {
-        if(this.getHeight() > o.getHeight()){
+        if (this.getHeight() > o.getHeight()) {
             return 1;
         } else if (this.getHeight() < o.getHeight()) {
             return -1;
-        }
-        else{
+        } else {
             return 0;
         }
 
