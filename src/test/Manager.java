@@ -4,10 +4,7 @@ import shapes.Cone;
 import shapes.Cylinder;
 import shapes.GeneralShape;
 import shapes.Pyramid;
-import shapes.prisms.OctagonalPrism;
-import shapes.prisms.PentagonalPrism;
-import shapes.prisms.SquarePrism;
-import shapes.prisms.TriangularPrism;
+import shapes.prisms.*;
 import utils.Sorter;
 
 import java.io.File;
@@ -18,8 +15,60 @@ public class Manager {
 
     public void manage() throws FileNotFoundException {
 
+try{
+    String chosenFile = "";
+    String chosenType = "";
+    String chosenSort = "";
+    Scanner inputScan = new Scanner(System.in);
+    String command = "";
+    while (!command.equals("-quit")) {
+        System.out.println("Welcome to sorter app, please follow instructions");
+        System.out.println("-f<filename>");
+        System.out.println("-t<specify type>");
+        System.out.println("-s<specify sorting algorithm>");
+        System.out.println();
+        System.out.println("Types:");
+        System.out.println("h for height; v for volume; a for base area ");
+        System.out.println();
+        System.out.println("Sorting types:");
+        System.out.println(" b for Bubble; s for Selection, i is Insertion, " +
+                "m for Merge, q for Quick, z for sort of choice");
+        System.out.println();
+        System.out.print("ENTER COMMAND: ");
+        command = inputScan.nextLine().toLowerCase();
+        System.out.println(command);
+        String[] commandArr = command.split(" ");
 
-        Scanner scan = new Scanner(new File("res/polyfor1.txt"));
+
+        for (String str : commandArr) {
+            if (str.contains(".txt") && str.contains("-f")) {
+                chosenFile = str.substring(2);
+                chosenFile = chosenFile.replaceAll("\"|\"" , "");
+                chosenFile = chosenFile.replaceAll("(res\\\\)" , "");
+                chosenFile = chosenFile.replaceAll("(c:\\\\temp\\\\)" , "");
+
+
+            }
+            else if (str.contains("-t")) {
+                chosenType = str;
+            } else if (str.contains("-s")) {
+                chosenSort = str;
+            } else {
+                return;
+            }
+        }
+        System.out.println(chosenFile);
+            GeneralShape[] shapes = fileHandler(chosenFile);
+            MenuManager(shapes, chosenType, chosenSort);
+    }
+}
+catch(NumberFormatException e){
+    System.out.println("invalid command");
+}
+
+    }
+    public GeneralShape[] fileHandler(String chosenFile) throws FileNotFoundException{
+        Scanner scan = new Scanner(new File("res\\" + chosenFile));
 
         scan.useDelimiter(" ");
         int shapeSize = scan.nextInt();
@@ -67,44 +116,12 @@ public class Manager {
 
             arrayIndex++;
         }
-        MenuManager(shapes);
+        return shapes;
     }
 
 
-    private void MenuManager(GeneralShape[] shapes) {
-        Scanner inputScan = new Scanner(System.in);
-        String command = "";
-        while (!command.equals("-q")) {
-            System.out.println("Welcome to sorter app, please follow instructions");
-            System.out.println("-f<filename>");
-            System.out.println("-t<specify type>");
-            System.out.println("-s<specify sorting algorithm>");
-            System.out.println();
-            System.out.println("Types:");
-            System.out.println("h for height; v for volume; a for base area ");
-            System.out.println();
-            System.out.println("Sorting types:");
-            System.out.println(" b for Bubble; s for Selection, i is Insertion, " +
-                    "m for Merge, q for Quick, z for sort of choice");
-            System.out.println();
-            System.out.print("ENTER COMMAND: ");
-            command = inputScan.nextLine().toLowerCase();
-            String[] commandArr = command.split(" ");
-            String chosenFile = "";
-            String chosenType = "";
-            String chosenSort = "";
+    private void MenuManager(GeneralShape[] shapes, String chosenType, String chosenSort) {
 
-            for (String str : commandArr) {
-                if (str.contains(".txt")) {
-                    chosenFile = str;
-                } else if (str.contains("-t")) {
-                    chosenType = str;
-                } else if (str.contains("-s")) {
-                    chosenSort = str;
-                } else {
-                    return;
-                }
-            }
             if (chosenSort.substring(2).equals("b")) {
                 new Sorter().BubbleSort(shapes, chosenType.substring(2));
             }
@@ -143,4 +160,4 @@ public class Manager {
             System.out.println();
         }
     }
-}
+
