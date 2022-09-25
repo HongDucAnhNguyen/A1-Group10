@@ -1,7 +1,9 @@
-package shapes;
+package sait.sos.utility;
 
 
 import java.util.Comparator;
+
+import sait.sos.problemdomain.GeneralShape;
 
 public class CompareVolume implements Comparator<GeneralShape> {
 

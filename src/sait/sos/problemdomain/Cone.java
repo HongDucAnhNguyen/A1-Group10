@@ -1,4 +1,4 @@
-package shapes;
+package sait.sos.problemdomain;
 
 public class Cone extends GeneralShape{
     private double radius;

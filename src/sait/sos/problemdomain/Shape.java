@@ -1,6 +1,6 @@
-package shapes;
+package sait.sos.problemdomain;
 
-public abstract class GeneralShape implements Comparable<GeneralShape> {
+public abstract class Shape implements Comparable<Shape> {
 
     //declare height variable
     protected double height;
@@ -9,7 +9,7 @@ public abstract class GeneralShape implements Comparable<GeneralShape> {
     protected final double PI = 3.14;
 
     //default constructor
-    public GeneralShape() {
+    public Shape() {
 
     }
 
@@ -31,7 +31,7 @@ public abstract class GeneralShape implements Comparable<GeneralShape> {
     public abstract double calcVolume();
 
     @Override
-    public int compareTo(GeneralShape o) {
+    public int compareTo(Shape o) {
         if (this.getHeight() > o.getHeight()) {
             return 1;
         } else if (this.getHeight() < o.getHeight()) {

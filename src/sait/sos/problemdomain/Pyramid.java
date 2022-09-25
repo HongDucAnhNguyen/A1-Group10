@@ -1,4 +1,4 @@
-package shapes;
+package sait.sos.problemdomain;
 
 public class Pyramid extends GeneralShape{
     private double side;

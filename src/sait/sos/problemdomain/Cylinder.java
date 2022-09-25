@@ -1,4 +1,4 @@
-package shapes;
+package sait.sos.problemdomain;
 
 public class Cylinder extends GeneralShape{
     private double radius;

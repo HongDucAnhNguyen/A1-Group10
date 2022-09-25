@@ -1,4 +1,4 @@
-package shapes.prisms;
+package sait.sos.problemdomain;
 
 public class SquarePrism extends GeneralPrism {
     public SquarePrism(double height, double side) {

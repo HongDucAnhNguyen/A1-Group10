@@ -1,4 +1,4 @@
-package shapes.prisms;
+package sait.sos.problemdomain;
 
 public class OctagonalPrism extends GeneralPrism {
     public OctagonalPrism(double height, double side) {

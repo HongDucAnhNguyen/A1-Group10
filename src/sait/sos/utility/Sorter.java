@@ -1,8 +1,6 @@
-package utils;
+package sait.sos.utility;
 
-import shapes.CompareBaseArea;
-import shapes.CompareVolume;
-import shapes.GeneralShape;
+import sait.sos.problemdomain.GeneralShape;
 
 
 

@@ -1,17 +1,22 @@
-package test;
+package sait.sos.manager;
 
-import shapes.Cone;
-import shapes.Cylinder;
-import shapes.GeneralShape;
-import shapes.Pyramid;
 import shapes.prisms.*;
-import utils.Sorter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Manager {
+import sait.sos.problemdomain.Cone;
+import sait.sos.problemdomain.Cylinder;
+import sait.sos.problemdomain.GeneralShape;
+import sait.sos.problemdomain.OctagonalPrism;
+import sait.sos.problemdomain.PentagonalPrism;
+import sait.sos.problemdomain.Pyramid;
+import sait.sos.problemdomain.SquarePrism;
+import sait.sos.problemdomain.TriangularPrism;
+import sait.sos.utility.Sorter;
+
+public class SortManager {
 
     public void manage() throws FileNotFoundException {
 

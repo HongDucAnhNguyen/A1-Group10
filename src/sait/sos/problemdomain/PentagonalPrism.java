@@ -1,4 +1,4 @@
-package shapes.prisms;
+package sait.sos.problemdomain;
 
 public class PentagonalPrism extends GeneralPrism {
     public PentagonalPrism(double height, double side) {

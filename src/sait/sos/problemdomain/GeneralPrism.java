@@ -1,6 +1,4 @@
-package shapes.prisms;
-
-import shapes.GeneralShape;
+package sait.sos.problemdomain;
 
 public abstract class GeneralPrism extends GeneralShape {
     private double side;
