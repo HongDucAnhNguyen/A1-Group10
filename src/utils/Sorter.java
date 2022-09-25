@@ -4,8 +4,6 @@ import shapes.CompareBaseArea;
 import shapes.CompareVolume;
 import shapes.GeneralShape;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class Sorter {
@@ -28,7 +26,7 @@ public class Sorter {
 
         for(int j = start; j <= end; j++) {
             //if value at index j < pivot, increment i and swap array[i] and array[j]
-            if(sortBy.equals("-hq")){
+            if(sortBy.equals("h")){
                 if(shapes[j].compareTo(pivot) > 0) {
                     i++;
 
@@ -38,7 +36,7 @@ public class Sorter {
                     shapes[j] = temp;
                 }
             }
-            if(sortBy.equals("-vq")){
+            if(sortBy.equals("v")){
                 CompareVolume volume = new CompareVolume();
                 if(volume.compare(shapes[j],pivot) > 0) {
                     i++;
@@ -49,7 +47,7 @@ public class Sorter {
                     shapes[j] = temp;
                 }
             }
-            if(sortBy.equals("-bq")){
+            if(sortBy.equals("a")){
                 CompareBaseArea baseArea = new CompareBaseArea();
                 if(baseArea.compare(shapes[j],pivot) > 0) {
                     i++;
@@ -73,14 +71,14 @@ public class Sorter {
     public static void BubbleSort(GeneralShape[] shapes, String sortBy) {
         for(int i = 0; i < shapes.length - 1; i++) {
             for(int j = 0; j < shapes.length - i - 1; j++) {
-                if(sortBy.equals("-hb")){
+                if(sortBy.equals("h")){
                     if(shapes[j].compareTo(shapes[j+1]) < 0) {
                         GeneralShape temp = shapes[j];
                         shapes[j] = shapes[j+1];
                         shapes[j+1] = temp;
                     }
                 }
-                if(sortBy.equals("-bb")){
+                if(sortBy.equals("a")){
                     CompareBaseArea baseArea = new CompareBaseArea();
                     if(baseArea.compare(shapes[j], shapes[j+1])< 0) {
                         GeneralShape temp = shapes[j];
@@ -88,7 +86,7 @@ public class Sorter {
                         shapes[j+1] = temp;
                     }
                 }
-                if(sortBy.equals("-vb")){
+                if(sortBy.equals("v")){
                     CompareVolume volume = new CompareVolume();
                     if(volume.compare(shapes[j], shapes[j+1])< 0) {
                         GeneralShape temp = shapes[j];
@@ -113,20 +111,20 @@ public class Sorter {
             int min = i;
 
             for(int j = i + 1; j < shapes.length; j++) {
-                if(sortBy.equals("-hs")){
+                if(sortBy.equals("h")){
                     //if value at index j is < the previous, set [j] as new min and move on
                     //keep repeating until this for loop break so we can start new iteration
                     if(shapes[min].compareTo(shapes[j]) < 0) {
                         min = j;
                     }
                 }
-                if (sortBy.equals("-bs")){
+                if (sortBy.equals("a")){
 
                     if(baseArea.compare(shapes[min], (shapes[j])) < 0) {
                         min = j;
                     }
                 }
-                if (sortBy.equals("-bs")){
+                if (sortBy.equals("v")){
 
                     if(volume.compare(shapes[min], (shapes[j])) < 0) {
                         min = j;
@@ -155,7 +153,7 @@ public class Sorter {
             //value to compare is always the thing behind our current temp
             int j = i - 1;
 
-            if(sortBy.equals("-hi")){
+            if(sortBy.equals("h")){
                 //while compare value is valid (not outside the array scope) and if [j] value > temp
                 //then shift it right
                 while(j >= 0 && shapes[j].compareTo(temp) < 0) {
@@ -168,7 +166,7 @@ public class Sorter {
                     j--;
                 }
             }
-            if(sortBy.equals("-bi")){
+            if(sortBy.equals("a")){
 
                 while(j >= 0 && baseArea.compare(shapes[j],temp) < 0) {
                     //the position right next wil now be taken by our current [j] value
@@ -180,7 +178,7 @@ public class Sorter {
                     j--;
                 }
             }
-            if(sortBy.equals("-vi")){
+            if(sortBy.equals("v")){
 
                 while(j >= 0 && volume.compare(shapes[j],temp) < 0) {
                     //the position right next wil now be taken by our current [j] value
@@ -239,15 +237,15 @@ public class Sorter {
         //check the conditions for merging
         while(l < leftSize && r < rightSize) {
             //if number on the left is > , this number takes [i] of original array
-            if(sortBy.equals("-hm") && leftArray[l].compareTo(rightArray[r]) > 0) {
+            if(sortBy.equals("h") && leftArray[l].compareTo(rightArray[r]) > 0) {
                 array[i] = leftArray[l];
                 i++;
                 l++;
-            } else if (sortBy.equals("-vm") && volume.compare(leftArray[l],rightArray[r])>0) {
+            } else if (sortBy.equals("v") && volume.compare(leftArray[l],rightArray[r])>0) {
                 array[i] = leftArray[l];
                 i++;
                 l++;
-            } else if (sortBy.equals("-bm") && baseArea.compare(leftArray[l],rightArray[r])>0) {
+            } else if (sortBy.equals("a") && baseArea.compare(leftArray[l],rightArray[r])>0) {
                 array[i] = leftArray[l];
                 i++;
                 l++;

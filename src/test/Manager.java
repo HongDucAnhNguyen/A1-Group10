@@ -89,44 +89,49 @@ public class Manager {
             System.out.println();
             System.out.print("ENTER COMMAND: ");
             command = inputScan.nextLine().toLowerCase();
-            if (command.substring(2).equals("b")) {
-                new Sorter().BubbleSort(shapes, command);
+            String[] commandArr = command.split(" ");
+            String chosenFile = "";
+            String chosenType = "";
+            String chosenSort = "";
 
-
+            for (String str : commandArr) {
+                if (str.contains(".txt")) {
+                    chosenFile = str;
+                } else if (str.contains("-t")) {
+                    chosenType = str;
+                } else if (str.contains("-s")) {
+                    chosenSort = str;
+                } else {
+                    return;
+                }
             }
-            if (command.substring(2).equals("q")) {
-
-                new Sorter().quickSort(shapes, 0, shapes.length - 1, command);
-
+            if (chosenSort.substring(2).equals("b")) {
+                new Sorter().BubbleSort(shapes, chosenType.substring(2));
             }
+            if (chosenSort.substring(2).equals("q")) {
 
-
-            if (command.substring(2).equals("s")) {
-
-
-                new Sorter().SelectionSort(shapes,command);
-
-            }
-
-
-
-            if (command.substring(2).equals("i")) {
-
-
-                new Sorter().InsertionSort(shapes, command);
+                new Sorter().quickSort(shapes, 0, shapes.length - 1,  chosenType.substring(2));
 
             }
 
 
+            if (chosenSort.substring(2).equals("s")) {
 
-            if (command.substring(2).equals("m")) {
-
-
-                new Sorter().mergeSort(shapes, command);
+                new Sorter().SelectionSort(shapes,  chosenType.substring(2));
 
             }
 
 
+            if (chosenSort.substring(2).equals("i")) {
+                new Sorter().InsertionSort(shapes,  chosenType.substring(2));
+
+            }
+
+
+            if (chosenSort.substring(2).equals("m")) {
+                new Sorter().mergeSort(shapes,  chosenType.substring(2));
+
+            }
 
 
             System.out.println("\nSort results: ");
