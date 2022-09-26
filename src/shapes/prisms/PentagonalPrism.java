@@ -11,6 +11,6 @@ public class PentagonalPrism extends GeneralPrism {
 
     @Override
     public double calcBaseArea() {
-        return (5 * Math.pow(getSide(), 2) * Math.tan(54))/4;
+        return (5 * Math.pow(getSide(), 2) * Math.tan(Math.toRadians(54)))/4;
     }
 }
