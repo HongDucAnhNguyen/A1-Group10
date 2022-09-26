@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Abstract class to represent a three-dimensional geometric shape.
  */
-public abstract class Shape implements Comparable<Shape>, Comparator<Shape> {
+public abstract class Shape implements Comparable<Shape> {
 
     private double height;    
 

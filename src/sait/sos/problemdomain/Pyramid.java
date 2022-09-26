@@ -1,29 +1,51 @@
 package sait.sos.problemdomain;
 
-public class Pyramid extends GeneralShape{
-    private double side;
+/**
+ * Represents a pyramid.
+ */
+public class Pyramid extends Shape {
+    
+	private double side;
 
-    public double calcVolume() {
-        return (1/3) * Math.pow(getSide(), 2) * getHeight();
-    }
-
-    @Override
-    public double calcBaseArea() {
-        return Math.pow(side, 2);
-    }
-
-
+    /**
+	 * Pyramid constructor.
+	 * @param height - Pyramid height.
+	 * @param side - Pyramid side length.
+	 */
     public Pyramid(double height, double side) {
-        this.height = height;
+        super(height);
         this.side = side;
     }
 
+    /**
+     * @return the pyramid side length.
+     */
     public double getSide() {
         return side;
     }
 
+    /**
+     * @param side - Pyramid side length.
+     */
     public void setSide(double side) {
         this.side = side;
     }
 
+    /**
+     * Calculates pyramid base area.
+     * @return the calculated base area.
+     */
+    @Override
+    public double calcBaseArea() {
+        return Math.pow(side, 2);
+    }
+    
+    /**
+     * Calculates pyramid volume.
+     * @return the calculated volume.
+     */
+	@Override
+    public double calcVolume() {
+        return (1/3) * calcBaseArea() * getHeight();
+    }
 }

@@ -1,17 +1,34 @@
 package sait.sos.problemdomain;
 
-public class TriangularPrism extends GeneralPrism {
-
+/**
+ * Represents a triangular prism.
+ */
+public class TriangularPrism extends Prism {
+	
+	/**
+	 * Triangular prism constructor.
+	 * @param height - Triangular prism height.
+	 * @param side - Triangular prism length.
+	 */
     public TriangularPrism(double height, double side) {
         super(height, side);
     }
 
-    public double calcVolume() {
-        return calcBaseArea() * getHeight();
-    }
-
+    /**
+     * Calculates triangular base area.
+     * @return the calculated base area.
+     */
     @Override
     public double calcBaseArea() {
-        return (Math.pow(getSide(), 2) * Math.sqrt(3))/4;
+        return (Math.pow(getSide(), 2) * Math.sqrt(3)) / 4;
+    }
+    
+    /**
+     * Calculates triangular prism volume.
+     * @return the calculated volume.
+     */
+    @Override
+    public double calcVolume() {
+        return calcBaseArea() * getHeight();
     }
 }

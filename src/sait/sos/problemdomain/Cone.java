@@ -1,25 +1,51 @@
 package sait.sos.problemdomain;
 
-public class Cone extends GeneralShape{
-    private double radius;
+/**
+ * Represents a cone.
+ */
+public class Cone extends Shape {
+    
+	private double radius;
+	
+    /**
+	 * Cone constructor.
+	 * @param height - Cone height.
+	 * @param radius - Cone radius.
+	 */
     public Cone(double height, double radius) {
-        this.height = height;
+        super(height);
         this.radius = radius;
     }
-    public double calcVolume() {
-        return (1/3) * PI * Math.pow(getRadius(), 2) * getHeight();
-    }
 
-    @Override
-    public double calcBaseArea() {
-        return PI * Math.pow(radius, 2);
-    }
-
+    /**
+     * @return the cone radius.
+     */
     public double getRadius() {
         return radius;
     }
 
+    /**
+     * @param radius - Cone radius.
+     */
     public void setRadius(double radius) {
         this.radius = radius;
+    }
+    
+    /**
+     * Calculates cone base area.
+     * @return the calculated base area.
+     */
+    @Override
+    public double calcBaseArea() {
+        return Math.PI * Math.pow(radius, 2);
+    }
+    
+    /**
+     * Calculates cone volume.
+     * @return the calculated volume.
+     */
+    @Override
+    public double calcVolume() {
+        return (1 / 3) * calcBaseArea() * getHeight();
     }
 }

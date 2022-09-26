@@ -6,15 +6,9 @@ package sait.sos.problemdomain;
 public abstract class Prism extends Shape {
     
 	private double side;
-
-	/**
-	 * @return the side length.
-	 */
-    public double getSide() {
-        return side;
-    }
     
     /**
+     * Prism constructor.
      * @param height - Prism height
      * @param side - Prism side length.
      */
@@ -22,16 +16,11 @@ public abstract class Prism extends Shape {
         super(height);
         this.side = side;
     }
-
-    @Override
-    public int compareTo(GeneralShape o) {
-        if(this.getHeight() > o.getHeight()){
-            return 1;
-        } else if (this.getHeight() < o.getHeight()) {
-            return -1;
-        }
-        else{
-            return 0;
-        }
+    
+    /**
+	 * @return the side length.
+	 */
+    public double getSide() {
+        return side;
     }
 }
