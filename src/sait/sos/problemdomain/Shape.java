@@ -1,46 +1,59 @@
 package sait.sos.problemdomain;
 
-public abstract class Shape implements Comparable<Shape> {
+import java.util.Comparator;
 
-    //declare height variable
-    protected double height;
+/**
+ * Abstract class to represent a three-dimensional geometric shape.
+ */
+public abstract class Shape implements Comparable<Shape>, Comparator<Shape> {
 
+    private double height;    
 
-    protected final double PI = 3.14;
-
-    //default constructor
-    public Shape() {
-
+    /**
+     * @param height - Shape height.
+     */
+    public Shape(double height) {
+    	this.height = height;
     }
-
-    //custom constructor
-
-
-    public double getHeight() {
-        return height;
-    }
-
-
-    public double setHeight(double height) {
-        return this.height = height;
-    }
-//abstract methods
-
+    
+    /**
+     * @return the height of this shape.
+     */
+	public double getHeight() {
+		return height;
+	}
+	
+	/**
+	 * @param height - Shape height.
+	 */
+	public void setHeight(double height) {
+		this.height = height;
+	}
+    
+	/**
+	 * @return the calculated base area.
+	 */
     public abstract double calcBaseArea();
 
+    /**
+     * @return the calculated volume.
+     */
     public abstract double calcVolume();
 
+    /**
+     * @param s - Shape to be compared.
+     * @return a negative integer if this shape height less than s height,
+     * or zero if this shape height equal to s height,
+     * or a positive integer if this shape height greater than s height.
+     */
     @Override
-    public int compareTo(Shape o) {
-        if (this.getHeight() > o.getHeight()) {
+    public int compareTo(Shape s) {
+        if (this.getHeight() > s.getHeight()) {
             return 1;
-        } else if (this.getHeight() < o.getHeight()) {
+        } else if (this.getHeight() < s.getHeight()) {
             return -1;
         } else {
             return 0;
         }
-
-
     }
-
 }

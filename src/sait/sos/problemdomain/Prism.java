@@ -1,14 +1,25 @@
 package sait.sos.problemdomain;
 
-public abstract class GeneralPrism extends GeneralShape {
-    private double side;
+/**
+ * Abstract class to represent a prism.
+ */
+public abstract class Prism extends Shape {
+    
+	private double side;
 
+	/**
+	 * @return the side length.
+	 */
     public double getSide() {
         return side;
     }
-
-    public GeneralPrism(double height, double side) {
-        this.height = height;
+    
+    /**
+     * @param height - Prism height
+     * @param side - Prism side length.
+     */
+    public Prism(double height, double side) {
+        super(height);
         this.side = side;
     }
 

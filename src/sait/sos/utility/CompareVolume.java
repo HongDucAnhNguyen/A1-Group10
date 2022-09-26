@@ -1,18 +1,30 @@
 package sait.sos.utility;
 
-
 import java.util.Comparator;
+import sait.sos.problemdomain.Shape;
 
-import sait.sos.problemdomain.GeneralShape;
+/**
+ * Compares two three-dimensional geometric shapes by volume.
+ */
+public class CompareVolume implements Comparator<Shape> {
 
-public class CompareVolume implements Comparator<GeneralShape> {
-
+	/**
+	 * @param s1 - First shape to be compared.
+	 * @param s2 - Second shape to be compared.
+	 * @return a negative integer if s1 volume less than s2 volume,
+	 * or zero if s1 volume equal to s2 volume,
+	 * or a positive integer if s1 volume greater than s2 volume.
+	 */
     @Override
-    public int compare(GeneralShape o1, GeneralShape o2) {
-        if (o1.calcVolume() < o2.calcVolume())
-            return -1;
-        if (o1.calcVolume() > o2.calcVolume())
+    public int compare(Shape s1, Shape s2) {
+    	if (s1.calcVolume() > s2.calcVolume()) {
             return 1;
-        else return 0;
+    	}
+        if (s1.calcVolume() < s2.calcVolume()) {
+            return -1;
+        }
+        else {
+        	return 0;
+        }
     }
 }

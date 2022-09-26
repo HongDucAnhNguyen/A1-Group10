@@ -1,11 +1,11 @@
 package sait.sos.utility;
 
-import sait.sos.problemdomain.GeneralShape;
+import sait.sos.problemdomain.Shape;
 
 
 
-public class Sorter {
-    public static void quickSort(GeneralShape[] shapes, int start, int end, String sortBy) {
+public class Utility {
+    public static void quickSort(Shape[] shapes, int start, int end, String sortBy) {
         //if dividing no longer possible, length <= 1
         if(end <= start) return; //base case
 
@@ -17,9 +17,9 @@ public class Sorter {
 
 
     }
-    private static int partition(GeneralShape[] shapes, int start, int end, String sortBy) {
+    private static int partition(Shape[] shapes, int start, int end, String sortBy) {
 
-        GeneralShape pivot = shapes[end]; //initially the pivot will be the ending
+        Shape pivot = shapes[end]; //initially the pivot will be the ending
         int i = start - 1; //i stands at [the first index of the array - 1]
 
         for(int j = start; j <= end; j++) {
