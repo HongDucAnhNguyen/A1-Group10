@@ -2,56 +2,74 @@ package sait.sos.utility;
 
 import sait.sos.problemdomain.Shape;
 
-
-
+/**
+ * Implements six sorting algorithms.
+ */
 public class Utility {
-    public static void quickSort(Shape[] shapes, int start, int end, String sortBy) {
+    
+	/**
+	 * Performs a quicksort.
+	 * @param shapes - Array of shapes to be sorted.
+	 * @param start - 
+	 * @param end - 
+	 * @param compareType - A char representing the attribute to be compared:
+	 * 'h' for height, 'v' for volume, 'a' for base area.
+	 */
+	public static void quicksort(Shape[] shapes, int start, int end, String compareType) {
         //if dividing no longer possible, length <= 1
-        if(end <= start) return; //base case
+        if (end <= start) {
+        	return; //base case
+        }
 
         //partition will sort our array and find pivot
-        int pivotPosition = partition(shapes, start, end, sortBy);
-        quickSort(shapes, start, pivotPosition - 1, sortBy); //pivot - 1 means the ending index of the sub array on the left
-        quickSort(shapes, pivotPosition + 1, end,sortBy); //pivot + 1 means the beginning index of the sub array on the right
-
-
-
+        int pivotPosition = partition(shapes, start, end, compareType);
+        quicksort(shapes, start, pivotPosition - 1, compareType); //pivot - 1 means the ending index of the sub array on the left
+        quicksort(shapes, pivotPosition + 1, end, compareType); //pivot + 1 means the beginning index of the sub array on the right
     }
-    private static int partition(Shape[] shapes, int start, int end, String sortBy) {
+	
+	/**
+	 * Sorts the array of shapes and finds pivot for quicksort.
+	 * @param shapes - Array of shapes to be sorted.
+	 * @param start - 
+	 * @param end - 
+	 * @param compareType - 
+	 * @return
+	 */
+    private static int partition(Shape[] shapes, int start, int end, String compareType) {
 
         Shape pivot = shapes[end]; //initially the pivot will be the ending
         int i = start - 1; //i stands at [the first index of the array - 1]
 
         for(int j = start; j <= end; j++) {
             //if value at index j < pivot, increment i and swap array[i] and array[j]
-            if(sortBy.equals("h")){
+            if(compareType.equals("h")){
                 if(shapes[j].compareTo(pivot) > 0) {
                     i++;
 
                     //swapping using temp variable
-                    GeneralShape temp = shapes[i];
+                    Shape temp = shapes[i];
                     shapes[i] = shapes[j];
                     shapes[j] = temp;
                 }
             }
-            if(sortBy.equals("v")){
+            if(compareType.equals("v")){
                 CompareVolume volume = new CompareVolume();
                 if(volume.compare(shapes[j],pivot) > 0) {
                     i++;
 
                     //swapping using temp variable
-                    GeneralShape temp = shapes[i];
+                    Shape temp = shapes[i];
                     shapes[i] = shapes[j];
                     shapes[j] = temp;
                 }
             }
-            if(sortBy.equals("a")){
+            if(compareType.equals("a")){
                 CompareBaseArea baseArea = new CompareBaseArea();
                 if(baseArea.compare(shapes[j],pivot) > 0) {
                     i++;
 
                     //swapping using temp variable
-                    GeneralShape temp = shapes[i];
+                    Shape temp = shapes[i];
                     shapes[i] = shapes[j];
                     shapes[j] = temp;
                 }
@@ -60,34 +78,40 @@ public class Utility {
         //this means when [j] reaches pivot, swap the value at pivot with [i+1]
         i++;//increment the i value first, now it is i + 1
         //perform swap
-        GeneralShape temp = shapes[i];
+        Shape temp = shapes[i];
         shapes[i] = shapes[end];
         shapes[end] = temp;
 
         return i; //return i value which is now where the pivot stands within the array
     }
-    public static void BubbleSort(GeneralShape[] shapes, String sortBy) {
+    
+    /**
+     * Performs a bubble sort.
+     * @param shapes - Array of shapes to be sorted
+     * @param compareType - 
+     */
+    public static void bubbleSort(Shape[] shapes, String compareType) {
         for(int i = 0; i < shapes.length - 1; i++) {
             for(int j = 0; j < shapes.length - i - 1; j++) {
-                if(sortBy.equals("h")){
+                if(compareType.equals("h")){
                     if(shapes[j].compareTo(shapes[j+1]) < 0) {
-                        GeneralShape temp = shapes[j];
+                        Shape temp = shapes[j];
                         shapes[j] = shapes[j+1];
                         shapes[j+1] = temp;
                     }
                 }
-                if(sortBy.equals("a")){
+                if(compareType.equals("a")){
                     CompareBaseArea baseArea = new CompareBaseArea();
                     if(baseArea.compare(shapes[j], shapes[j+1])< 0) {
-                        GeneralShape temp = shapes[j];
+                        Shape temp = shapes[j];
                         shapes[j] = shapes[j+1];
                         shapes[j+1] = temp;
                     }
                 }
-                if(sortBy.equals("v")){
+                if(compareType.equals("v")){
                     CompareVolume volume = new CompareVolume();
                     if(volume.compare(shapes[j], shapes[j+1])< 0) {
-                        GeneralShape temp = shapes[j];
+                        Shape temp = shapes[j];
                         shapes[j] = shapes[j+1];
                         shapes[j+1] = temp;
                     }
@@ -96,7 +120,12 @@ public class Utility {
         }
     }
 
-    public static void SelectionSort(GeneralShape[] shapes, String sortBy) {
+    /**
+     * Performs a selection sort.
+     * @param shapes
+     * @param compareType
+     */
+    public static void selectionSort(Shape[] shapes, String compareType) {
         CompareBaseArea baseArea = new CompareBaseArea();
         CompareVolume volume = new CompareVolume();
 
@@ -109,20 +138,20 @@ public class Utility {
             int min = i;
 
             for(int j = i + 1; j < shapes.length; j++) {
-                if(sortBy.equals("h")){
+                if(compareType.equals("h")){
                     //if value at index j is < the previous, set [j] as new min and move on
                     //keep repeating until this for loop break so we can start new iteration
                     if(shapes[min].compareTo(shapes[j]) < 0) {
                         min = j;
                     }
                 }
-                if (sortBy.equals("a")){
+                if (compareType.equals("a")){
 
                     if(baseArea.compare(shapes[min], (shapes[j])) < 0) {
                         min = j;
                     }
                 }
-                if (sortBy.equals("v")){
+                if (compareType.equals("v")){
 
                     if(volume.compare(shapes[min], (shapes[j])) < 0) {
                         min = j;
@@ -131,7 +160,7 @@ public class Utility {
             }
             //after for loop breaks, end of by executing these lines and then move on to new iteration
             //place temp where the index with which we used to start the iteration
-            GeneralShape temp = shapes[i];
+            Shape temp = shapes[i];
             //place min where that starting index i was
             shapes[i] = shapes[min];
 
@@ -142,16 +171,21 @@ public class Utility {
 
     }
 
-    public static void InsertionSort(GeneralShape[] shapes, String sortBy) {
+    /**
+     * Performs an insertion sort.
+     * @param shapes
+     * @param compareType
+     */
+    public static void insertionSort(Shape[] shapes, String compareType) {
         CompareBaseArea baseArea = new CompareBaseArea();
         CompareVolume volume = new CompareVolume();
         for(int i = 1; i < shapes.length; i++) {
             //set initial temp
-            GeneralShape temp = shapes[i];
+            Shape temp = shapes[i];
             //value to compare is always the thing behind our current temp
             int j = i - 1;
 
-            if(sortBy.equals("h")){
+            if(compareType.equals("h")){
                 //while compare value is valid (not outside the array scope) and if [j] value > temp
                 //then shift it right
                 while(j >= 0 && shapes[j].compareTo(temp) < 0) {
@@ -164,7 +198,7 @@ public class Utility {
                     j--;
                 }
             }
-            if(sortBy.equals("a")){
+            if(compareType.equals("a")){
 
                 while(j >= 0 && baseArea.compare(shapes[j],temp) < 0) {
                     //the position right next wil now be taken by our current [j] value
@@ -176,7 +210,7 @@ public class Utility {
                     j--;
                 }
             }
-            if(sortBy.equals("v")){
+            if(compareType.equals("v")){
 
                 while(j >= 0 && volume.compare(shapes[j],temp) < 0) {
                     //the position right next wil now be taken by our current [j] value
@@ -194,15 +228,20 @@ public class Utility {
         }
     }
 
-    public static void mergeSort(GeneralShape[] shapes, String sortBy) {
+    /**
+     * Performs a merge sort.
+     * @param shapes
+     * @param compareType
+     */
+    public static void mergeSort(Shape[] shapes, String compareType) {
 
         int length = shapes.length;
         //which means if the current state of the array only has 1 element and cannot be divided further
         if (length <= 1) return; //base case
 
         int middle = length / 2; //split the array each time mergeSort is called
-        GeneralShape[] leftArray = new GeneralShape[middle]; //leftArray carries the splitted length
-        GeneralShape[] rightArray = new GeneralShape[length - middle]; //rightArray carries whatevers left
+        Shape[] leftArray = new Shape[middle]; //leftArray carries the splitted length
+        Shape[] rightArray = new Shape[length - middle]; //rightArray carries whatevers left
 
         int i; //left array index
         int j = 0; //right array index
@@ -221,11 +260,19 @@ public class Utility {
                 j++; //to go to next index in array
             }
         }
-        mergeSort(leftArray,sortBy); //recursion
-        mergeSort(rightArray, sortBy);
-        merge(leftArray, rightArray, shapes, sortBy); //after breaking array down to subarrays, merge it back and sort
+        mergeSort(leftArray,compareType); //recursion
+        mergeSort(rightArray, compareType);
+        merge(leftArray, rightArray, shapes, compareType); //after breaking array down to subarrays, merge it back and sort
     }
-    private static void merge(GeneralShape[] leftArray, GeneralShape[] rightArray, GeneralShape[] array, String sortBy) {
+    
+    /**
+     * Merges the array of shapes for merge sort.
+     * @param leftArray
+     * @param rightArray
+     * @param array
+     * @param compareType
+     */
+    private static void merge(Shape[] leftArray, Shape[] rightArray, Shape[] array, String compareType) {
         CompareVolume volume = new CompareVolume();
         CompareBaseArea baseArea = new CompareBaseArea();
         int leftSize = array.length / 2;
@@ -235,15 +282,15 @@ public class Utility {
         //check the conditions for merging
         while(l < leftSize && r < rightSize) {
             //if number on the left is > , this number takes [i] of original array
-            if(sortBy.equals("h") && leftArray[l].compareTo(rightArray[r]) > 0) {
+            if(compareType.equals("h") && leftArray[l].compareTo(rightArray[r]) > 0) {
                 array[i] = leftArray[l];
                 i++;
                 l++;
-            } else if (sortBy.equals("v") && volume.compare(leftArray[l],rightArray[r])>0) {
+            } else if (compareType.equals("v") && volume.compare(leftArray[l],rightArray[r])>0) {
                 array[i] = leftArray[l];
                 i++;
                 l++;
-            } else if (sortBy.equals("a") && baseArea.compare(leftArray[l],rightArray[r])>0) {
+            } else if (compareType.equals("a") && baseArea.compare(leftArray[l],rightArray[r])>0) {
                 array[i] = leftArray[l];
                 i++;
                 l++;
@@ -273,8 +320,11 @@ public class Utility {
             r++;
         }
     }
-
-    public static void SixthSort() {
+    
+    /**
+     * 
+     */
+    public static void radixSort() {
 
     }
 }

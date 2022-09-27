@@ -3,8 +3,7 @@ package sait.sos.problemdomain;
 /**
  * Represents a pyramid.
  */
-public class Pyramid extends Shape {
-    
+public class Pyramid extends Shape {    
 	private double side;
 
     /**

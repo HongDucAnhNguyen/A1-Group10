@@ -1,5 +1,7 @@
 package sait.sos.application;
 
+import java.io.FileNotFoundException;
+
 import sait.sos.manager.SortManager;
 
 /**
@@ -12,6 +14,10 @@ public class AppDriver {
 	 * @param args
 	 */
     public static void main(String[] args) {
-    	new SortManager();
+    	try {
+			new SortManager();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
     }
 }

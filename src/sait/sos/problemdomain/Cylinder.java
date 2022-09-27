@@ -4,7 +4,6 @@ package sait.sos.problemdomain;
  * Represents a cylinder.
  */
 public class Cylinder extends Shape {
-    
 	private double radius;
 
     /**

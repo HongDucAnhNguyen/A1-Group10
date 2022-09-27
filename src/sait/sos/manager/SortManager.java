@@ -1,92 +1,88 @@
 package sait.sos.manager;
 
-import shapes.prisms.*;
-
+import sait.sos.problemdomain.*;
+import sait.sos.utility.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import sait.sos.problemdomain.Cone;
-import sait.sos.problemdomain.Cylinder;
-import sait.sos.problemdomain.GeneralShape;
-import sait.sos.problemdomain.OctagonalPrism;
-import sait.sos.problemdomain.PentagonalPrism;
-import sait.sos.problemdomain.Pyramid;
-import sait.sos.problemdomain.SquarePrism;
-import sait.sos.problemdomain.TriangularPrism;
-import sait.sos.utility.Sorter;
-
+/**
+ * Testing application.
+ */
 public class SortManager {
-
-    public void manage() throws FileNotFoundException {
-
-        try{
-            String chosenFile = "";
-            String chosenType = "";
-            String chosenSort = "";
-            Scanner inputScan = new Scanner(System.in);
-            String command = "";
-            while (!command.equals("-quit")) {
-                System.out.println("Welcome to sorter app, please follow instructions");
-                System.out.println("-f<filename>");
-                System.out.println("-t<specify type>");
-                System.out.println("-s<specify sorting algorithm>");
-                System.out.println();
-                System.out.println("Types:");
-                System.out.println("h for height; v for volume; a for base area ");
-                System.out.println();
-                System.out.println("Sorting types:");
-                System.out.println(" b for Bubble; s for Selection, i is Insertion, " +
-                        "m for Merge, q for Quick, z for sort of choice");
-                System.out.println();
-                System.out.print("ENTER COMMAND: ");
-                command = inputScan.nextLine().toLowerCase();
-                System.out.println(command);
-                String[] commandArr = command.split(" ");
-
-
-                for (String str : commandArr) {
-                    if (str.contains(".txt") && str.contains("-f")) {
-                        chosenFile = str.substring(2);
-                        chosenFile = chosenFile.replaceAll("\"|\"" , "");
-                        chosenFile = chosenFile.replaceAll("(res\\\\)" , "");
-                        chosenFile = chosenFile.replaceAll("(c:\\\\temp\\\\)" , "");
-
-
-                    }
-                    else if (str.contains("-t")) {
-                        chosenType = str;
-                    } else if (str.contains("-s")) {
-                        chosenSort = str;
-                    } else {
-                        return;
-                    }
-                }
-                System.out.println(chosenFile);
-                GeneralShape[] shapes = fileHandler(chosenFile);
-                MenuManager(shapes, chosenType, chosenSort);
-            }
-        }
-        catch(NumberFormatException e){
-            System.out.println("invalid command");
-        }
-
+	private final Shape[] SHAPES;
+	private String fileName;
+	private String compareType;
+	private String sortType;
+	private Scanner keyboard;
+	
+	/**
+	 * Controls the flow of the application.
+	 * @throws FileNotFoundException
+	 */
+    public SortManager() throws FileNotFoundException {  	
+    	displayMenu();
+    	SHAPES = loadShapes();
+    	optionHandler();
+    	displayResults();
     }
-    public GeneralShape[] fileHandler(String chosenFile) throws FileNotFoundException{
-        Scanner scan = new Scanner(new File("res\\" + chosenFile));
+    
+    /**
+     * Displays menu options and accepts user input.
+     */
+    private void displayMenu() {  		
+    	String userCommand = "";    	
+		keyboard = new Scanner(System.in);
+		    
+		while (!userCommand.equals("-quit")) {		        
+		    System.out.println("Welcome to SORTING OUT SORTING!\n");		        
+		    System.out.println("Please specify a filename, compare type, and sort type using this format:");
+		    System.out.println("-f<filename> -t<compare type> -s<sort type>\n");		     
+		    System.out.println("Compare Types: H for height; V for volume; A for base area.\n");
+		    System.out.println("Sort Types: B for bubble; S for selection; I for insertion; "
+		    		+ "M for merge; Q for quick; Z for radix.\n");		      
+		    System.out.println("Enter -quit to exit the program.\n");
+		    
+		    System.out.print("ENTER COMMAND: ");
+		    userCommand = keyboard.nextLine().toLowerCase();
+		    String[] commandArray = userCommand.split(" ");
+		    
+		    for (String str : commandArray) {
+		    	if (str.contains(".txt") && str.contains("-f")) {
+		    		fileName = str.substring(2);
+		            fileName = fileName.replaceAll("\"|\"" , "");
+		            fileName = fileName.replaceFirst(".*(?=poly)", "");
+		        }
+		    	else if (str.contains("-t")) {
+		    		compareType = str;
+		        }
+		    	else if (str.contains("-s")) {
+		    		sortType = str;
+		        }
+		    	else {
+		    		return;
+		        }	    
+		    }
+		}
+    }
 
-        scan.useDelimiter(" ");
-        int shapeSize = scan.nextInt();
+    public Shape[] loadShapes() throws FileNotFoundException {        
         String shapeType;
         double height;
         double otherVal;
-        GeneralShape[] shapes = new GeneralShape[shapeSize];
-        System.out.println("this file has " + shapeSize + " shapes");
         int arrayIndex = 0;
-        while (scan.hasNext() && arrayIndex < shapeSize) {
-            shapeType = scan.next();
-            height = scan.nextDouble();
-            otherVal = scan.nextDouble();
+        
+        Scanner inFile = new Scanner(new File("res\\" + fileName));
+        inFile.useDelimiter(" ");
+        
+        int shapeSize = inFile.nextInt();
+        Shape[] shapes = new Shape[shapeSize];        
+        System.out.println("This file has " + shapeSize + " shapes.");      
+        
+        while (inFile.hasNext() && arrayIndex < shapeSize) {
+            shapeType = inFile.next();
+            height = inFile.nextDouble();
+            otherVal = inFile.nextDouble();
             switch (shapeType.toLowerCase()) {
                 case "cylinder":
                     shapes[arrayIndex] = new Cylinder(height, otherVal);
@@ -117,51 +113,42 @@ public class SortManager {
                 default:
                     break;
             }
-
-
             arrayIndex++;
         }
         return shapes;
     }
 
-
-    private void MenuManager(GeneralShape[] shapes, String chosenType, String chosenSort) {
-
-        if (chosenSort.substring(2).equals("b")) {
-            new Sorter().BubbleSort(shapes, chosenType.substring(2));
+    private void optionHandler() {
+    	if (sortType.substring(2).equals("b")) {
+            Utility.bubbleSort(SHAPES, compareType.substring(2));
         }
-        if (chosenSort.substring(2).equals("q")) {
-
-            new Sorter().quickSort(shapes, 0, shapes.length - 1,  chosenType.substring(2));
-
+    	else if (sortType.substring(2).equals("q")) {
+            Utility.quicksort(SHAPES, 0, SHAPES.length - 1,  compareType.substring(2));
         }
 
-
-        if (chosenSort.substring(2).equals("s")) {
-
-            new Sorter().SelectionSort(shapes,  chosenType.substring(2));
-
+    	else if (sortType.substring(2).equals("s")) {
+            Utility.selectionSort(SHAPES,  compareType.substring(2));
         }
 
-
-        if (chosenSort.substring(2).equals("i")) {
-            new Sorter().InsertionSort(shapes,  chosenType.substring(2));
-
+    	else if (sortType.substring(2).equals("i")) {
+            Utility.insertionSort(SHAPES,  compareType.substring(2));
         }
 
-
-        if (chosenSort.substring(2).equals("m")) {
-            new Sorter().mergeSort(shapes,  chosenType.substring(2));
-
+    	else if (sortType.substring(2).equals("m")) {
+            Utility.mergeSort(SHAPES,  compareType.substring(2));
         }
-
-
-        System.out.println("\nSort results: ");
-        for (GeneralShape shape : shapes
-        ) {
+    	else {
+    		System.out.println("Invalid sort type.");
+    		return;
+    	}
+    }
+    
+    private void displayResults() {    	
+        System.out.println("\nSORT RESULTS: ");
+        for (Shape shape : SHAPES) {
             System.out.println(shape.getHeight() + "\t" + shape.calcBaseArea()
                     + "\t" + shape.calcVolume());
         }
         System.out.println();
-    }
+    }          
 }

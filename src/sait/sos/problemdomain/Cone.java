@@ -4,7 +4,6 @@ package sait.sos.problemdomain;
  * Represents a cone.
  */
 public class Cone extends Shape {
-    
 	private double radius;
 	
     /**

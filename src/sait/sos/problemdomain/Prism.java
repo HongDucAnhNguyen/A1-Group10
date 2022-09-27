@@ -3,8 +3,7 @@ package sait.sos.problemdomain;
 /**
  * Abstract class to represent a prism.
  */
-public abstract class Prism extends Shape {
-    
+public abstract class Prism extends Shape {    
 	private double side;
     
     /**
