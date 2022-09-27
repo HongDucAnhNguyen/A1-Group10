@@ -44,8 +44,7 @@ try{
             if (str.contains(".txt") && str.contains("-f")) {
                 chosenFile = str.substring(2);
                 chosenFile = chosenFile.replaceAll("\"|\"" , "");
-                chosenFile = chosenFile.replaceAll("(res\\\\)" , "");
-                chosenFile = chosenFile.replaceAll("(c:\\\\temp\\\\)" , "");
+                chosenFile = chosenFile.replaceFirst(".*(?=poly)", "");
 
 
             }
