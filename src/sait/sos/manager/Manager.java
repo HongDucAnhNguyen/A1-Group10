@@ -20,7 +20,7 @@ public class Manager {
 	 * Controls the flow of the application.
 	 */
     public Manager() {
-		displayMenu();
+    	displayMenu();
     	processInput();
     	handleOptions();
     	showResults();
