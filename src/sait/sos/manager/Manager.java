@@ -11,7 +11,7 @@ import java.util.*;
  * TODO add parameters for radixSort.
  */
 public class Manager {
-	private Shape[] shapesArray; // change as needed
+	private Shape[] shapesArray;
 	private String fileName;
 	private String compareType;
 	private String sortType;
