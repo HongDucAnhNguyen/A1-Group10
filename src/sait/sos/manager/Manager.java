@@ -16,10 +16,10 @@ public class Manager {
 	private String compareType;
 	private String sortType;
 	
-	/**
-	 * Controls the flow of the application.
-	 */
-    public Manager() {
+    /**
+     * Controls the flow of the program.
+     */
+	public Manager() {
     	displayMenu();
     	processInput();
     	handleOptions();
@@ -170,6 +170,9 @@ public class Manager {
     	}
     }
     
+    /**
+     * Displays the sorting results.
+     */
     private void showResults() {  	
         System.out.println("\nSORT RESULTS: ");
         for (Shape shape : shapesArray) {
