@@ -323,6 +323,8 @@ public class Utility {
     
     /**
      * Performs a gnome sort.
+     * @param shapes
+     * @param compareType
      */
     public static void gnomeSort(Shape[] shapes, String compareType) {        
     	Shape temp;
