@@ -322,9 +322,42 @@ public class Utility {
     }
     
     /**
-     * 
+     * Performs a gnome sort.
      */
-    public static void radixSort() {
-
+    public static void gnomeSort(Shape[] shapes, String compareType) {        
+    	Shape temp;
+    	
+    	CompareBaseArea area = new CompareBaseArea();
+        CompareVolume volume = new CompareVolume();
+    	
+    	for (int i = 1; i < shapes.length - 1; i++) {
+    		// Start with i = 1 to avoid index out of bounds exception.    		
+    		switch(compareType) {
+    		case "h":
+    			if (shapes[i].compareTo(shapes[i - 1]) < 0) {
+    				temp = shapes[i];
+    				shapes[i] = shapes[i - 1];
+    				shapes[i - 1] = temp;
+    			}
+    			break;
+    		case "a":
+    			if (area.compare(shapes[i], shapes[i - 1]) < 0) {
+    				temp = shapes[i];
+    				shapes[i] = shapes[i - 1];
+    				shapes[i - 1] = temp;
+    			}
+    			break;
+    		case "v":
+    			if (volume.compare(shapes[i], shapes[i - 1]) < 0) {
+    				temp = shapes[i];
+    				shapes[i] = shapes[i - 1];
+    				shapes[i - 1] = temp;
+    			}
+    			break;
+    		default:
+    			System.out.println("\nInvalid compare type.\n");
+    			return;
+    		}
+    	}
     }
 }
