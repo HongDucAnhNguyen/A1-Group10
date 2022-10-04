@@ -1,12 +1,15 @@
 package sait.sos.utility;
 
 import sait.sos.problemdomain.Shape;
+import java.util.*;
 
 /**
  * Implements six sorting algorithms.
  */
 public class Utility {
-    
+	
+	private static Random r;
+	
 	/**
 	 * Performs a quicksort.
 	 * @param shapes - Array of shapes to be sorted.
@@ -322,44 +325,122 @@ public class Utility {
     }
     
     /**
-     * Performs a gnome sort.
+     * Calls the appropriate bogosort method based on compare type.
      * @param shapes
      * @param compareType
      */
-    public static void gnomeSort(Shape[] shapes, String compareType) {        
-    	Shape temp;
-    	
-    	CompareBaseArea area = new CompareBaseArea();
-        CompareVolume volume = new CompareVolume();
-    	
-    	for (int i = 1; i < shapes.length - 1; i++) {
-    		// Start with i = 1 to avoid index out of bounds exception.    		
-    		switch(compareType) {
+    public static void bogoSort(Shape[] shapes, String compareType) {
+    	switch(compareType) {
     		case "h":
-    			if (shapes[i].compareTo(shapes[i - 1]) < 0) {
-    				temp = shapes[i];
-    				shapes[i] = shapes[i - 1];
-    				shapes[i - 1] = temp;
-    			}
+    			bogoSortHeight(shapes);
     			break;
     		case "a":
-    			if (area.compare(shapes[i], shapes[i - 1]) < 0) {
-    				temp = shapes[i];
-    				shapes[i] = shapes[i - 1];
-    				shapes[i - 1] = temp;
-    			}
+    			bogoSortArea(shapes);
     			break;
     		case "v":
-    			if (volume.compare(shapes[i], shapes[i - 1]) < 0) {
-    				temp = shapes[i];
-    				shapes[i] = shapes[i - 1];
-    				shapes[i - 1] = temp;
-    			}
+    			bogoSortVolume(shapes);
     			break;
     		default:
     			System.out.println("\nInvalid compare type.\n");
     			return;
-    		}
     	}
     }
+    
+    /**
+     * Performs a bogosort from largest to smallest based on height.
+     * @param shapes
+     */
+    public static void bogoSortHeight(Shape[] shapes) {    	
+    	int length = shapes.length;
+    	boolean sorted;
+    	
+    	do {
+    		sorted = true;
+    		for (int i = length - 1; i > 0; i--) {
+    			if (shapes[i].compareTo(shapes[i - 1]) > 0) {
+    				shuffle(shapes);
+    				sorted = false;
+    				break;
+    			}
+        	}
+    	} while (!sorted);
+    }
+    
+    /**
+     * Performs a bogosort from largest to smallest based on volume.
+     * @param shapes
+     */
+    public static void bogoSortVolume(Shape[] shapes) {
+    	CompareVolume volume = new CompareVolume();
+    	int length = shapes.length;
+    	boolean sorted;
+    	
+    	do {
+    		sorted = true;
+    		for (int i = length - 1; i > 0; i--) {
+    			if (volume.compare(shapes[i], shapes[i - 1]) > 0) {
+    				shuffle(shapes);
+    				sorted = false;
+    				break;
+    			}
+        	}
+    	} while (!sorted);
+    }
+    
+    /**
+     * Performs a bogosort from largest to smallest based on base area.
+     * @param shapes
+     */
+    public static void bogoSortArea(Shape[] shapes) {
+    	CompareBaseArea area = new CompareBaseArea();
+    	int length = shapes.length;
+    	boolean sorted;
+    	
+    	do {
+    		sorted = true;
+    		for (int i = length - 1; i > 0; i--) {
+    			if (area.compare(shapes[i], shapes[i - 1]) > 0) {
+    				shuffle(shapes);
+    				sorted = false;
+    				break;
+    			}
+        	}
+    	} while (!sorted);
+    }    
+    
+    /**
+	 * Randomly shuffles the specified array.
+	 * Source: Java.util.Collections.shuffle
+	 * @param shapes
+	 */
+	public static void shuffle(Shape[] shapes) {
+		Random rnd = r;
+		if (rnd == null) {
+			r = rnd = new Random();
+		}
+		shuffle(shapes, rnd);
+	}
+    	
+	/**
+	 * Randomly shuffles the specified array.
+	 * Source: Java.util.Collections.shuffle
+	 * @param shapes
+	 * @param rnd
+	 */
+	public static void shuffle(Shape[] shapes, Random rnd) {
+		int size  = shapes.length;
+		for (int i = size; i > 1; i--) {
+			swap(shapes, i - 1, rnd.nextInt(i));
+		}
+	}
+	
+	/**
+     * Swaps the two specified elements in the specified array. 
+     * Source: Java.util.Collections.swap
+     */
+    public static void swap(Object[] arr, int i, int j) {
+        Object tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }    
 }

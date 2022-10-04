@@ -33,7 +33,7 @@ public class Manager {
 	    System.out.println("-f<filename> -t<compare type> -s<sort type>\n");		     
 	    System.out.println("Compare Types: H for height; V for volume; A for base area.");
 	    System.out.println("Sort Types: B for bubble; S for selection; I for insertion; "
-	    		+ "M for merge; Q for quick; Z for gnome.\n");
+	    		+ "M for merge; Q for quick; Z for bogo.\n");
 	    System.out.println("To close the program: -quit\n");
     }
     
@@ -160,7 +160,7 @@ public class Manager {
             Utility.mergeSort(shapesArray,  compareType.substring(2));
         }
     	else if (sortType.substring(2).equals("z")) {
-    		Utility.gnomeSort(shapesArray, compareType.substring(2));
+    		Utility.bogoSort(shapesArray, compareType.substring(2));
     	}
     	else {
     		System.out.println("\nInvalid sort type.\n");
