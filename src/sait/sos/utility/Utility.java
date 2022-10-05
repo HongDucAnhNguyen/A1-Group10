@@ -13,18 +13,18 @@ public class Utility {
 	/**
 	 * Performs a quicksort.
 	 * @param shapes - Array of shapes to be sorted.
-	 * @param start - 
-	 * @param end - 
+	 * @param start - The first index of the array.
+	 * @param end - The last index of the array.
 	 * @param compareType - A char representing the attribute to be compared:
 	 * 'h' for height, 'v' for volume, 'a' for base area.
 	 */
 	public static void quicksort(Shape[] shapes, int start, int end, String compareType) {
-        //if dividing no longer possible, length <= 1
+        // If dividing no longer possible, length <= 1
         if (end <= start) {
         	return; //base case
         }
 
-        //partition will sort our array and find pivot
+        // Partition will sort our array and find pivot
         int pivotPosition = partition(shapes, start, end, compareType);
         quicksort(shapes, start, pivotPosition - 1, compareType); //pivot - 1 means the ending index of the sub array on the left
         quicksort(shapes, pivotPosition + 1, end, compareType); //pivot + 1 means the beginning index of the sub array on the right
@@ -33,10 +33,11 @@ public class Utility {
 	/**
 	 * Sorts the array of shapes and finds pivot for quicksort.
 	 * @param shapes - Array of shapes to be sorted.
-	 * @param start - 
-	 * @param end - 
-	 * @param compareType - 
-	 * @return
+	 * @param start - The first index of the array.
+	 * @param end - The last index of the array.
+	 * @param compareType - A char representing the attribute to be compared:
+	 * 'h' for height, 'v' for volume, 'a' for base area.
+	 * @return the pivot location.
 	 */
     private static int partition(Shape[] shapes, int start, int end, String compareType) {
 
@@ -90,8 +91,9 @@ public class Utility {
     
     /**
      * Performs a bubble sort.
-     * @param shapes - Array of shapes to be sorted
-     * @param compareType - 
+     * @param shapes - Array of shapes to be sorted.
+     * @param compareType - A char representing the attribute to be compared:
+	 * 'h' for height, 'v' for volume, 'a' for base area. 
      */
     public static void bubbleSort(Shape[] shapes, String compareType) {
         for(int i = 0; i < shapes.length - 1; i++) {
@@ -125,8 +127,9 @@ public class Utility {
 
     /**
      * Performs a selection sort.
-     * @param shapes
-     * @param compareType
+     * @param shapes - Array of shapes to be sorted.
+     * @param compareType - A char representing the attribute to be compared:
+	 * 'h' for height, 'v' for volume, 'a' for base area.
      */
     public static void selectionSort(Shape[] shapes, String compareType) {
         CompareBaseArea baseArea = new CompareBaseArea();
@@ -176,8 +179,9 @@ public class Utility {
 
     /**
      * Performs an insertion sort.
-     * @param shapes
-     * @param compareType
+     * @param shapes - Array of shapes to be sorted.
+     * @param compareType - A char representing the attribute to be compared:
+	 * 'h' for height, 'v' for volume, 'a' for base area.
      */
     public static void insertionSort(Shape[] shapes, String compareType) {
         CompareBaseArea baseArea = new CompareBaseArea();
@@ -233,8 +237,9 @@ public class Utility {
 
     /**
      * Performs a merge sort.
-     * @param shapes
-     * @param compareType
+     * @param shapes - Array of shapes to be sorted.
+     * @param compareType - A char representing the attribute to be compared:
+	 * 'h' for height, 'v' for volume, 'a' for base area.
      */
     public static void mergeSort(Shape[] shapes, String compareType) {
 
@@ -244,7 +249,7 @@ public class Utility {
 
         int middle = length / 2; //split the array each time mergeSort is called
         Shape[] leftArray = new Shape[middle]; //leftArray carries the splitted length
-        Shape[] rightArray = new Shape[length - middle]; //rightArray carries whatevers left
+        Shape[] rightArray = new Shape[length - middle]; //rightArray carries whatever is left
 
         int i; //left array index
         int j = 0; //right array index
@@ -270,10 +275,11 @@ public class Utility {
     
     /**
      * Merges the array of shapes for merge sort.
-     * @param leftArray
-     * @param rightArray
-     * @param array
-     * @param compareType
+     * @param leftArray - Left half of the shapes array.
+     * @param rightArray - Right half of the shapes array.
+     * @param array - Array of shapes to be sorted.
+     * @param compareType - A char representing the attribute to be compared:
+	 * 'h' for height, 'v' for volume, 'a' for base area.
      */
     private static void merge(Shape[] leftArray, Shape[] rightArray, Shape[] array, String compareType) {
         CompareVolume volume = new CompareVolume();
@@ -326,8 +332,9 @@ public class Utility {
     
     /**
      * Calls the appropriate bogosort method based on compare type.
-     * @param shapes
-     * @param compareType
+     * @param shapes - Array of shapes to be sorted.
+     * @param compareType - A char representing the attribute to be compared:
+	 * 'h' for height, 'v' for volume, 'a' for base area.
      */
     public static void bogoSort(Shape[] shapes, String compareType) {
     	switch(compareType) {
@@ -348,7 +355,7 @@ public class Utility {
     
     /**
      * Performs a bogosort from largest to smallest based on height.
-     * @param shapes
+     * @param shapes - Array of shapes to be sorted.
      */
     public static void bogoSortHeight(Shape[] shapes) {    	
     	int length = shapes.length;
@@ -368,7 +375,7 @@ public class Utility {
     
     /**
      * Performs a bogosort from largest to smallest based on volume.
-     * @param shapes
+     * @param shapes - Array of shapes to be sorted.
      */
     public static void bogoSortVolume(Shape[] shapes) {
     	CompareVolume volume = new CompareVolume();
@@ -389,7 +396,7 @@ public class Utility {
     
     /**
      * Performs a bogosort from largest to smallest based on base area.
-     * @param shapes
+     * @param shapes - Array of shapes to be sorted.
      */
     public static void bogoSortArea(Shape[] shapes) {
     	CompareBaseArea area = new CompareBaseArea();
@@ -411,7 +418,7 @@ public class Utility {
     /**
 	 * Randomly shuffles the specified array.
 	 * Source: Java.util.Collections.shuffle
-	 * @param shapes
+	 * @param shapes - Array of shapes to be sorted.
 	 */
 	public static void shuffle(Shape[] shapes) {
 		Random rnd = r;
@@ -424,8 +431,8 @@ public class Utility {
 	/**
 	 * Randomly shuffles the specified array.
 	 * Source: Java.util.Collections.shuffle
-	 * @param shapes
-	 * @param rnd
+	 * @param shapes - Array of shapes to be sorted.
+	 * @param rnd - The source of randomness to use to shuffle the array.
 	 */
 	public static void shuffle(Shape[] shapes, Random rnd) {
 		int size  = shapes.length;
@@ -435,9 +442,12 @@ public class Utility {
 	}
 	
 	/**
-     * Swaps the two specified elements in the specified array. 
+	 * Swaps the two specified elements in the specified array. 
      * Source: Java.util.Collections.swap
-     */
+	 * @param arr - The array in which to swap elements.
+	 * @param i - The index of one element to be swapped.
+	 * @param j - The index of the other element to be swapped.
+	 */
     public static void swap(Object[] arr, int i, int j) {
         Object tmp = arr[i];
         arr[i] = arr[j];
