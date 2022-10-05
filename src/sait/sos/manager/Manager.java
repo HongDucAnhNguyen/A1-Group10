@@ -9,7 +9,7 @@ import java.util.*;
  * Testing application.
  */
 public class Manager {
-	private Shape[] shapesArray;
+	private Shape[] shapes;
 	private String fileName;
 	private String compareType;
 	private String sortType;
@@ -54,9 +54,9 @@ public class Manager {
 	        	System.exit(0);
 	    	}
 	    			
-	    	String[] commandArray = userCommand.split(" ");
+	    	String[] commands = userCommand.split(" ");
 	    
-		    for (String str : commandArray) {
+		    for (String str : commands) {
 		    	if (str.contains(".txt") && str.contains("-f")) {
 		    		fileName = str.substring(2);
 		            fileName = fileName.replaceAll("\"|\"" , "");
@@ -95,8 +95,8 @@ public class Manager {
         inFile.useDelimiter(" ");
         
         int shapeSize = inFile.nextInt();
-        shapesArray = new Shape[shapeSize];        
-        System.out.println("This file has " + shapeSize + " shapes.");      
+        shapes = new Shape[shapeSize];        
+        System.out.println("\nThis file has " + shapeSize + " shapes.");      
         
         while (inFile.hasNext() && arrayIndex < shapeSize) {
             shapeType = inFile.next();
@@ -104,30 +104,30 @@ public class Manager {
             otherVal = inFile.nextDouble();
             switch (shapeType.toLowerCase()) {
                 case "cylinder":
-                    shapesArray[arrayIndex] = new Cylinder(height, otherVal);
+                    shapes[arrayIndex] = new Cylinder(height, otherVal);
                     break;
                 case "cone":
-                    shapesArray[arrayIndex] = new Cone(height, otherVal);
+                    shapes[arrayIndex] = new Cone(height, otherVal);
                     break;
 
                 case "pyramid":
-                    shapesArray[arrayIndex] = new Pyramid(height, otherVal);
+                    shapes[arrayIndex] = new Pyramid(height, otherVal);
                     break;
 
                 case "triangularprism":
-                    shapesArray[arrayIndex] = new TriangularPrism(height, otherVal);
+                    shapes[arrayIndex] = new TriangularPrism(height, otherVal);
                     break;
 
                 case "squareprism":
-                    shapesArray[arrayIndex] = new SquarePrism(height, otherVal);
+                    shapes[arrayIndex] = new SquarePrism(height, otherVal);
                     break;
 
                 case "pentagonalprism":
-                    shapesArray[arrayIndex] = new PentagonalPrism(height, otherVal);
+                    shapes[arrayIndex] = new PentagonalPrism(height, otherVal);
                     break;
 
                 case "octagonalprism":
-                    shapesArray[arrayIndex] = new OctagonalPrism(height, otherVal);
+                    shapes[arrayIndex] = new OctagonalPrism(height, otherVal);
                     break;
                 default:
                     break;
@@ -142,25 +142,25 @@ public class Manager {
      */
     private void handleOptions() {
     	if (sortType.substring(2).equals("b")) {
-            Utility.bubbleSort(shapesArray, compareType.substring(2));
+            Utility.bubbleSort(shapes, compareType.substring(2));
         }
     	else if (sortType.substring(2).equals("q")) {
-            Utility.quicksort(shapesArray, 0, shapesArray.length - 1,  compareType.substring(2));
+            Utility.quicksort(shapes, 0, shapes.length - 1,  compareType.substring(2));
         }
 
     	else if (sortType.substring(2).equals("s")) {
-            Utility.selectionSort(shapesArray,  compareType.substring(2));
+            Utility.selectionSort(shapes,  compareType.substring(2));
         }
 
     	else if (sortType.substring(2).equals("i")) {
-            Utility.insertionSort(shapesArray,  compareType.substring(2));
+    		Utility.insertionSort(shapes,  compareType.substring(2));
         }
 
     	else if (sortType.substring(2).equals("m")) {
-            Utility.mergeSort(shapesArray,  compareType.substring(2));
+            Utility.mergeSort(shapes,  compareType.substring(2));
         }
     	else if (sortType.substring(2).equals("z")) {
-    		Utility.bogoSort(shapesArray, compareType.substring(2));
+    		Utility.bogoSort(shapes, compareType.substring(2));
     	}
     	else {
     		System.out.println("\nInvalid sort type.\n");
@@ -173,10 +173,10 @@ public class Manager {
      */
     private void showResults() {  	
         System.out.println("\nSORT RESULTS: ");
-        for (Shape shape : shapesArray) {
-            System.out.println(shape.getHeight() + "\t" + shape.calcBaseArea()
-                    + "\t" + shape.calcVolume());
+        for (Shape shape : shapes) {
+            System.out.println("Height: " + shape.getHeight() + "\t" + "Base Area: " + shape.calcBaseArea()
+                    + "\t" + "Volume: " + shape.calcVolume());
         }
-        System.out.println("Goodbye!");
+        System.out.println("\nGoodbye!");
     }
 }
