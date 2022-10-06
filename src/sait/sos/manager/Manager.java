@@ -14,6 +14,7 @@ public class Manager {
 	private String fileName;
 	private String compareType;
 	private String sortType;
+    private long sortStartTime;
 	
     /**
      * Controls the flow of the program.
@@ -131,24 +132,36 @@ public class Manager {
      */
     private void handleOptions() {
     	if (sortType.equalsIgnoreCase("b")) {
+            System.out.println("Using Bubble Sort.");
+            sortStartTime = System.currentTimeMillis();
             Utility.bubbleSort(shapes, compareType);
         }
     	else if (sortType.equalsIgnoreCase("q")) {
+            System.out.println("Using Quick Sort.");
+            sortStartTime = System.currentTimeMillis();
             Utility.quicksort(shapes, 0, shapes.length - 1,  compareType);
         }
 
     	else if (sortType.equalsIgnoreCase("s")) {
+            System.out.println("Using Selection Sort.");
+            sortStartTime = System.currentTimeMillis();
             Utility.selectionSort(shapes, compareType);
         }
 
     	else if (sortType.equalsIgnoreCase("i")) {
+            System.out.println("Using Insertion Sort.");
+            sortStartTime = System.currentTimeMillis();
     		Utility.insertionSort(shapes, compareType);
         }
 
     	else if (sortType.equalsIgnoreCase("m")) {
+            System.out.println("Using Merge Sort.");
+            sortStartTime = System.currentTimeMillis();
             Utility.mergeSort(shapes, compareType);
         }
     	else if (sortType.equalsIgnoreCase("z")) {
+            System.out.println("Using Bogo Sort.");
+            sortStartTime = System.currentTimeMillis();
     		Utility.bogoSort(shapes, compareType);
     	}
     	else {
@@ -166,6 +179,7 @@ public class Manager {
             System.out.println("Height: " + shape.getHeight() + "\t" + "Base Area: " + shape.calcBaseArea()
                     + "\t" + "Volume: " + shape.calcVolume());
         }
+        System.out.println("\nSort completed in " + (System.currentTimeMillis() - sortStartTime) + "ms.");
         System.out.println("\nGoodbye!");
     }
 }
