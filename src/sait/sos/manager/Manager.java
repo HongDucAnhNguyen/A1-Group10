@@ -80,7 +80,7 @@ public class Manager {
         double otherVal;
         int arrayIndex = 0;
 
-        Scanner inFile = new Scanner(new File("res\\" + fileName));
+        Scanner inFile = new Scanner(new File(fileName.contains("res\\") ? "" : "res\\" + fileName));
         inFile.useDelimiter(" ");
         
         int shapeSize = inFile.nextInt();
