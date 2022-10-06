@@ -130,30 +130,30 @@ public class Manager {
      * Calls the appropriate sorting method based on chosen sort type.
      */
     private void handleOptions() {
-    	if (sortType.substring(2).equals("b")) {
-            Utility.bubbleSort(shapes, compareType.substring(2));
+    	if (sortType.equalsIgnoreCase("b")) {
+            Utility.bubbleSort(shapes, compareType);
         }
-    	else if (sortType.substring(2).equals("q")) {
-            Utility.quicksort(shapes, 0, shapes.length - 1,  compareType.substring(2));
-        }
-
-    	else if (sortType.substring(2).equals("s")) {
-            Utility.selectionSort(shapes,  compareType.substring(2));
+    	else if (sortType.equalsIgnoreCase("q")) {
+            Utility.quicksort(shapes, 0, shapes.length - 1,  compareType);
         }
 
-    	else if (sortType.substring(2).equals("i")) {
-    		Utility.insertionSort(shapes,  compareType.substring(2));
+    	else if (sortType.equalsIgnoreCase("s")) {
+            Utility.selectionSort(shapes, compareType);
         }
 
-    	else if (sortType.substring(2).equals("m")) {
-            Utility.mergeSort(shapes,  compareType.substring(2));
+    	else if (sortType.equalsIgnoreCase("i")) {
+    		Utility.insertionSort(shapes, compareType);
         }
-    	else if (sortType.substring(2).equals("z")) {
-    		Utility.bogoSort(shapes, compareType.substring(2));
+
+    	else if (sortType.equalsIgnoreCase("m")) {
+            Utility.mergeSort(shapes, compareType);
+        }
+    	else if (sortType.equalsIgnoreCase("z")) {
+    		Utility.bogoSort(shapes, compareType);
     	}
     	else {
     		System.out.println("\nInvalid sort type.\n");
-    		return;
+    		System.exit(0);
     	}
     }
     
