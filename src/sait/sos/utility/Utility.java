@@ -332,6 +332,8 @@ public class Utility {
     
     /**
      * Calls the appropriate bogosort method based on compare type.
+     * Bogosort works by continually shuffling the array until it is shuffled into a sorted state.
+     * AKA - Stupid Sort
      * @param shapes - Array of shapes to be sorted.
      * @param compareType - A char representing the attribute to be compared:
 	 * 'h' for height, 'v' for volume, 'a' for base area.
