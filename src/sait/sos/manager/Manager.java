@@ -85,7 +85,10 @@ public class Manager {
         double otherVal;
         int arrayIndex = 0;
 
-        Scanner inFile = new Scanner(new File(fileName.contains("res\\") || fileName.contains("res/") ? fileName : "res" + File.separator + fileName));
+        //The ternary operator here does the following:
+        //  1. Checks if the file already has "res" in it, adding it if it does
+        //  2. Changes "/" or "\" to be a system independent file separator so that it will work on Windows & macOS
+        Scanner inFile = new Scanner(new File(fileName.contains("res\\") ? fileName.replace("\\", File.separator) : fileName.contains("res/") ? fileName.replace("/", File.separator) : "res" + File.separator + fileName));
         inFile.useDelimiter(" ");
         
         int shapeSize = inFile.nextInt();
