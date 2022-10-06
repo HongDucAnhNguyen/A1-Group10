@@ -4,6 +4,7 @@ import sait.sos.problemdomain.*;
 import sait.sos.utility.*;
 import java.io.*;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * Testing application.
@@ -17,68 +18,56 @@ public class Manager {
     /**
      * Controls the flow of the program.
      */
-	public Manager() {
-    	displayMenu();
-    	processInput();
+	public Manager(String[] args) {
+
+        //If no arguments were sent, display the options menu
+        if (args == null || args.length < 1) {
+            System.out.println("Command line arguments cannot be empty!");
+            System.exit(0);
+        }
+
+    	processInput(args);
     	handleOptions();
     	showResults();
     }
-    
-    /**
-     * Displays menu options.
-     */
-    private void displayMenu() {    	
-    	System.out.println("Welcome to SORTING OUT SORTING!\n");		        
-	    System.out.println("Please specify a filename, compare type, and sort type using this format:");
-	    System.out.println("-f<filename> -t<compare type> -s<sort type>\n");		     
-	    System.out.println("Compare Types: H for height; V for volume; A for base area.");
-	    System.out.println("Sort Types: B for bubble; S for selection; I for insertion; "
-	    		+ "M for merge; Q for quick; Z for bogo.\n");
-	    System.out.println("To close the program: -quit\n");
-    }
-    
-    /**
-     * Processes user input.
-     */
-    private void processInput() {
-    	Scanner keyboard = new Scanner(System.in);
-    	String userCommand = "";
-    	boolean flag = false;
-    	
-    	while (!flag) {	        
-		    System.out.print("ENTER COMMAND: ");		    
-		    userCommand = keyboard.nextLine().toLowerCase();
-	    	
-		    if (userCommand.equals("-quit")) {
-	    		System.out.println("\nGoodbye!");
-	        	System.exit(0);
-	    	}
-	    			
-	    	String[] commands = userCommand.split(" ");
-	    
-		    for (String str : commands) {
-		    	if (str.contains(".txt") && str.contains("-f")) {
-		    		fileName = str.substring(2);
-		            fileName = fileName.replaceAll("\"|\"" , "");
-		            fileName = fileName.replaceFirst(".*(?=poly)", "");
-		        }
-		    	else if (str.contains("-t")) {
-		    		compareType = str;
-		        }
-		    	else if (str.contains("-s")) {
-		    		sortType = str;
-		        }
-		    }
-		    
-		    try {
-		    	loadShapes();
-		    	flag = true;
-		    }
-		    catch (FileNotFoundException e) {
-		    	System.out.println("\nFile not found.\n");
-		    }	    
-		}
-    	keyboard.close();
+
+    private void processInput(String[] args) {
+
+        for (String arg : args) {
+
+            if (arg.length() < 2) {
+                System.out.println("Invalid argument: " + arg);
+                System.exit(0);
+            }
+
+            switch (arg.substring(0, 2)) {
+
+                case "-f":
+                case "-F":
+                    fileName = arg.substring(2);
+                    break;
+
+                case "-t":
+                case "-T":
+                    compareType = arg.substring(2);
+                    break;
+
+                case "-s":
+                case "-S":
+                    sortType = arg.substring(2);
+                    break;
+
+            }
+
+        }
+
+        try {
+            loadShapes();
+        } catch (FileNotFoundException e) {
+            System.out.println("File " + fileName + " not found.");
+            System.exit(0);
+        }
+
     }
     
     /**
@@ -90,7 +79,7 @@ public class Manager {
         double height;
         double otherVal;
         int arrayIndex = 0;
-        
+
         Scanner inFile = new Scanner(new File("res\\" + fileName));
         inFile.useDelimiter(" ");
         

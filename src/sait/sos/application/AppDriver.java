@@ -12,6 +12,6 @@ public class AppDriver {
 	 * @param args
 	 */
     public static void main(String[] args) {
-    	new Manager();
+    	new Manager(args);
     }
 }
