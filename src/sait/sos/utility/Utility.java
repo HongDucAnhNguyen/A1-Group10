@@ -46,7 +46,7 @@ public class Utility {
 
         for(int j = start; j <= end; j++) {
             //if value at index j < pivot, increment i and swap array[i] and array[j]
-            if(compareType.equals("h")){
+            if(compareType.equalsIgnoreCase("h")){
                 if(shapes[j].compareTo(pivot) > 0) {
                     i++;
 
@@ -56,7 +56,7 @@ public class Utility {
                     shapes[j] = temp;
                 }
             }
-            if(compareType.equals("v")){
+            if(compareType.equalsIgnoreCase("v")){
                 CompareVolume volume = new CompareVolume();
                 if(volume.compare(shapes[j],pivot) > 0) {
                     i++;
@@ -67,7 +67,7 @@ public class Utility {
                     shapes[j] = temp;
                 }
             }
-            if(compareType.equals("a")){
+            if(compareType.equalsIgnoreCase("a")){
                 CompareBaseArea baseArea = new CompareBaseArea();
                 if(baseArea.compare(shapes[j],pivot) > 0) {
                     i++;
@@ -98,14 +98,14 @@ public class Utility {
     public static void bubbleSort(Shape[] shapes, String compareType) {
         for(int i = 0; i < shapes.length - 1; i++) {
             for(int j = 0; j < shapes.length - i - 1; j++) {
-                if(compareType.equals("h")){
+                if(compareType.equalsIgnoreCase("h")){
                     if(shapes[j].compareTo(shapes[j+1]) < 0) {
                         Shape temp = shapes[j];
                         shapes[j] = shapes[j+1];
                         shapes[j+1] = temp;
                     }
                 }
-                if(compareType.equals("a")){
+                if(compareType.equalsIgnoreCase("a")){
                     CompareBaseArea baseArea = new CompareBaseArea();
                     if(baseArea.compare(shapes[j], shapes[j+1])< 0) {
                         Shape temp = shapes[j];
@@ -113,7 +113,7 @@ public class Utility {
                         shapes[j+1] = temp;
                     }
                 }
-                if(compareType.equals("v")){
+                if(compareType.equalsIgnoreCase("v")){
                     CompareVolume volume = new CompareVolume();
                     if(volume.compare(shapes[j], shapes[j+1])< 0) {
                         Shape temp = shapes[j];
@@ -144,20 +144,20 @@ public class Utility {
             int min = i;
 
             for(int j = i + 1; j < shapes.length; j++) {
-                if(compareType.equals("h")){
+                if(compareType.equalsIgnoreCase("h")){
                     //if value at index j is < the previous, set [j] as new min and move on
                     //keep repeating until this for loop break so we can start new iteration
                     if(shapes[min].compareTo(shapes[j]) < 0) {
                         min = j;
                     }
                 }
-                if (compareType.equals("a")){
+                if (compareType.equalsIgnoreCase("a")){
 
                     if(baseArea.compare(shapes[min], (shapes[j])) < 0) {
                         min = j;
                     }
                 }
-                if (compareType.equals("v")){
+                if (compareType.equalsIgnoreCase("v")){
 
                     if(volume.compare(shapes[min], (shapes[j])) < 0) {
                         min = j;
@@ -192,7 +192,7 @@ public class Utility {
             //value to compare is always the thing behind our current temp
             int j = i - 1;
 
-            if(compareType.equals("h")){
+            if(compareType.equalsIgnoreCase("h")){
                 //while compare value is valid (not outside the array scope) and if [j] value > temp
                 //then shift it right
                 while(j >= 0 && shapes[j].compareTo(temp) < 0) {
@@ -205,7 +205,7 @@ public class Utility {
                     j--;
                 }
             }
-            if(compareType.equals("a")){
+            if(compareType.equalsIgnoreCase("a")){
 
                 while(j >= 0 && baseArea.compare(shapes[j],temp) < 0) {
                     //the position right next wil now be taken by our current [j] value
@@ -217,7 +217,7 @@ public class Utility {
                     j--;
                 }
             }
-            if(compareType.equals("v")){
+            if(compareType.equalsIgnoreCase("v")){
 
                 while(j >= 0 && volume.compare(shapes[j],temp) < 0) {
                     //the position right next wil now be taken by our current [j] value
@@ -268,7 +268,7 @@ public class Utility {
                 j++; //to go to next index in array
             }
         }
-        mergeSort(leftArray,compareType); //recursion
+        mergeSort(leftArray, compareType); //recursion
         mergeSort(rightArray, compareType);
         merge(leftArray, rightArray, shapes, compareType); //after breaking array down to subarrays, merge it back and sort
     }
@@ -291,15 +291,15 @@ public class Utility {
         //check the conditions for merging
         while(l < leftSize && r < rightSize) {
             //if number on the left is > , this number takes [i] of original array
-            if(compareType.equals("h") && leftArray[l].compareTo(rightArray[r]) > 0) {
+            if(compareType.equalsIgnoreCase("h") && leftArray[l].compareTo(rightArray[r]) > 0) {
                 array[i] = leftArray[l];
                 i++;
                 l++;
-            } else if (compareType.equals("v") && volume.compare(leftArray[l],rightArray[r])>0) {
+            } else if (compareType.equalsIgnoreCase("v") && volume.compare(leftArray[l],rightArray[r])>0) {
                 array[i] = leftArray[l];
                 i++;
                 l++;
-            } else if (compareType.equals("a") && baseArea.compare(leftArray[l],rightArray[r])>0) {
+            } else if (compareType.equalsIgnoreCase("a") && baseArea.compare(leftArray[l],rightArray[r])>0) {
                 array[i] = leftArray[l];
                 i++;
                 l++;
@@ -339,17 +339,20 @@ public class Utility {
     public static void bogoSort(Shape[] shapes, String compareType) {
     	switch(compareType) {
     		case "h":
+            case "H":
     			bogoSortHeight(shapes);
     			break;
     		case "a":
+            case "A":
     			bogoSortArea(shapes);
     			break;
     		case "v":
+            case "V":
     			bogoSortVolume(shapes);
     			break;
     		default:
     			System.out.println("\nInvalid compare type.\n");
-    			return;
+    			System.exit(0);
     	}
     }
     
