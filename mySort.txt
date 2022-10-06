@@ -1,0 +1,3 @@
+add detailed description and complexity analysis for bogosort here
+Should include algorithm steps in pseudocode with the number of operations performed in each step
+DO NOT COPY OR REPHRASE FROM ANOTHER SOURCE
