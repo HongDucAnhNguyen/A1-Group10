@@ -32,6 +32,10 @@ public class Manager {
     	showResults();
     }
 
+    /**
+     * Processes the application command line arguments
+     * @param args Provided command line arguments
+     */
     private void processInput(String[] args) {
 
         for (String arg : args) {
