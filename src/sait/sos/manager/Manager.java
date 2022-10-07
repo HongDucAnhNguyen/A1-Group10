@@ -21,7 +21,6 @@ public class Manager {
      */
 	public Manager(String[] args) {
 
-        //If no arguments were sent, display the options menu
         if (args == null || args.length < 1) {
             System.out.println("Command line arguments cannot be empty!");
             System.exit(0);
@@ -77,7 +76,7 @@ public class Manager {
     
     /**
      * Reads text file and populates array of shapes.
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException Thrown if the provided file does not exist
      */
     public void loadShapes() throws FileNotFoundException {        
         String shapeType;
