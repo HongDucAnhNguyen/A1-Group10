@@ -3,8 +3,9 @@ package sait.sos.manager;
 import sait.sos.problemdomain.*;
 import sait.sos.utility.*;
 import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * Testing application.
@@ -70,6 +71,10 @@ public class Manager {
         } catch (FileNotFoundException e) {
             System.out.println("File " + fileName + " not found.");
             System.exit(0);
+        } catch (Exception ex) {
+            System.out.println("Error loading shapes!");
+            ex.printStackTrace();
+            System.exit(0);
         }
 
     }
@@ -78,7 +83,7 @@ public class Manager {
      * Reads text file and populates array of shapes.
      * @throws FileNotFoundException Thrown if the provided file does not exist
      */
-    public void loadShapes() throws FileNotFoundException {        
+    public void loadShapes() throws FileNotFoundException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         String shapeType;
         double height;
         double otherVal;
@@ -95,39 +100,31 @@ public class Manager {
         System.out.println("\nThis file has " + shapeSize + " shapes.");      
         
         while (inFile.hasNext() && arrayIndex < shapeSize) {
+
+            //Get the values from the file
             shapeType = inFile.next();
             height = inFile.nextDouble();
             otherVal = inFile.nextDouble();
-            switch (shapeType.toLowerCase()) {
-                case "cylinder":
-                    shapes[arrayIndex] = new Cylinder(height, otherVal);
-                    break;
-                case "cone":
-                    shapes[arrayIndex] = new Cone(height, otherVal);
-                    break;
 
-                case "pyramid":
-                    shapes[arrayIndex] = new Pyramid(height, otherVal);
-                    break;
+            //Find the class
+            Class cls = Class.forName("sait.sos.problemdomain." + shapeType);
 
-                case "triangularprism":
-                    shapes[arrayIndex] = new TriangularPrism(height, otherVal);
-                    break;
+            //Set the parameter types
+            Class[] paramTypes = new Class[2];
+            paramTypes[0] = Double.TYPE;
+            paramTypes[1] = Double.TYPE;
 
-                case "squareprism":
-                    shapes[arrayIndex] = new SquarePrism(height, otherVal);
-                    break;
+            //Get the constructor
+            Constructor ct = cls.getConstructor(paramTypes);
 
-                case "pentagonalprism":
-                    shapes[arrayIndex] = new PentagonalPrism(height, otherVal);
-                    break;
+            //Set the parameters
+            Object[] argList = new Object[2];
+            argList[0] = height;
+            argList[1] = otherVal;
 
-                case "octagonalprism":
-                    shapes[arrayIndex] = new OctagonalPrism(height, otherVal);
-                    break;
-                default:
-                    break;
-            }
+            //Add the shape to the array
+            shapes[arrayIndex] = (Shape) ct.newInstance(argList);
+
             arrayIndex++;
         }
         inFile.close();
