@@ -9,7 +9,7 @@ public class AppDriver {
 	
 	/**
 	 * Entry point to application.
-	 * @param args
+	 * @param args Command line arguments provided when the jar file is run
 	 */
     public static void main(String[] args) {
     	new Manager(args);
