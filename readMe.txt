@@ -13,6 +13,13 @@
  /_/ \_\ /__/ /__/ |_| \__, | |_||_| |_|_|_| \___| |_||_|  \__|   |_|           |___/ \___/ |_|    \__| |_| |_||_| \__, |   |_|   \___/ |_|  \_, | \__, | \___/ |_||_| /__/
                        |___/                                                                                       |___/                     |__/  |___/
 
+@date 10-07-2022
+@author Ryan Delorme
+@author Refaat El-hajj
+@author Hong (Jay) Nguyen
+@author Simon Dumalski
+@version 10-07-2022
+
   _  _    ___   __      __    _____    ___      ___   _   _   _  _
  | || |  / _ \  \ \    / /   |_   _|  / _ \    | _ \ | | | | | \| |
  | __ | | (_) |  \ \/\/ /      | |   | (_) |   |   / | |_| | | .` |
@@ -27,7 +34,7 @@
 -- In a terminal window, run the following command in the above directory:
 java -jar Sort.jar <command arguments>
 
--- You must specify a filename compare type, and sort type using this format:
+-- You must specify a filename, compare type, and sort type using this format:
 -f<filename> -t<compare type> -s<sort type>
 
 -- Valid compare types:

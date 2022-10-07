@@ -1,3 +1,21 @@
-add detailed description and complexity analysis for bogosort here
-Should include algorithm steps in pseudocode with the number of operations performed in each step
-DO NOT COPY OR REPHRASE FROM ANOTHER SOURCE
+  ___    ___     ___    ___       ___    ___    ___   _____
+ | _ )  / _ \   / __|  / _ \     / __|  / _ \  | _ \ |_   _|
+ | _ \ | (_) | | (_ | | (_) |    \__ \ | (_) | |   /   | |
+ |___/  \___/   \___|  \___/     |___/  \___/  |_|_\   |_|
+
+-- Sort Description
+Bogosort, also called Stupid Sort, Dumb Sort, or Monkey Sort, is the slowest sorting algorithm we could find.
+To put it simply, bogosort works by taking in an array of comparable objects, checking if it is sorted,
+and shuffling the array around if it is not. There is no real logic to the sort. It can take years for an
+array to even be sorted.
+
+-- Complexity Analysis
+O((n + 1)!)
+The best case scenario for a bogosort is when it is presented with an already sorted array.
+It is unpredictable otherwise.
+
+!!!NEED TO ADD OPERATIONS PERFORMED IN EACH STEP TO THE BELOW SECTION!!!
+-- Algorithm Steps
+1. Loop is array sorted?
+2. True - return sorted array
+3. False - shuffle array around and repeat loop
