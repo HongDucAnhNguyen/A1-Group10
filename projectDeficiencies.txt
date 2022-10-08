@@ -1,0 +1,5 @@
+-- Project Completeness
+We believe that we have completed 100% of the project according to the rubric.
+
+-- Project Deficiencies
+We have no deficiencies to report
