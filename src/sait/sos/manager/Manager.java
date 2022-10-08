@@ -82,6 +82,11 @@ public class Manager {
     /**
      * Reads text file and populates array of shapes.
      * @throws FileNotFoundException Thrown if the provided file does not exist
+     * @throws ClassNotFoundException Thrown if there is an error with reflection with loading shapes
+     * @throws NoSuchMethodException Thrown if there is an error with reflection with loading shapes
+     * @throws InvocationTargetException Thrown if there is an error with reflection with loading shapes
+     * @throws InstantiationException Thrown if there is an error with reflection with loading shapes
+     * @throws IllegalAccessException Thrown if there is an error with reflection with loading shapes
      */
     public void loadShapes() throws FileNotFoundException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         String shapeType;
