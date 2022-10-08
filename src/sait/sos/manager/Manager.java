@@ -178,9 +178,9 @@ public class Manager {
      */
     private void showResults() {  	
         System.out.println("\nSORT RESULTS: ");
+        System.out.printf("%-25s%-25s%-25s\n\n", "Height", "Base Area", "Volume");
         for (Shape shape : shapes) {
-            System.out.println("Height: " + shape.getHeight() + "\t" + "Base Area: " + shape.calcBaseArea()
-                    + "\t" + "Volume: " + shape.calcVolume());
+        	System.out.printf("%-25f%-25f%-25f\n", shape.getHeight(), shape.calcBaseArea(), shape.calcVolume());
         }
         System.out.println("\nSort completed in " + (System.currentTimeMillis() - sortStartTime) + "ms.");
         System.out.println("\nGoodbye!");
