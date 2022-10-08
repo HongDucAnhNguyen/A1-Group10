@@ -94,6 +94,7 @@ public class Manager {
         double otherVal;
         int arrayIndex = 0;
 
+        fileName = !fileName.contains(File.separator) ? "res" + File.separator + fileName : fileName;
         fileName = fileName.replace("/", File.separator);
         fileName = fileName.replace("\\", File.separator);
 
