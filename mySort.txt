@@ -14,7 +14,6 @@ O((n + 1)!)
 The best case scenario for a bogosort is when it is presented with an already sorted array.
 It is unpredictable otherwise.
 
-!!!NEED TO ADD OPERATIONS PERFORMED IN EACH STEP TO THE BELOW SECTION!!!
 -- Algorithm Steps
 1. Loop is array sorted?
 2. True - return sorted array
