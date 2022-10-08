@@ -3,7 +3,13 @@ package sait.sos.application;
 import sait.sos.manager.Manager;
 
 /**
- * Application driver.
+ * CPRG311 Assignment 1 - Group 10
+ * @version 10-07-2022
+ * @author Ryan Delorme
+ * @author Hong (Jay) Nguyen
+ * @author Refaat El-hajj
+ * @author Simon Dumalski
+ * @version 10-07-2022
  */
 public class AppDriver {
 	
